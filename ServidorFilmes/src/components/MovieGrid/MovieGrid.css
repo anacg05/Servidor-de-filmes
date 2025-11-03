@@ -1,0 +1,36 @@
+.movie-grid-container {
+  display: grid;
+  /* Cria um grid responsivo:
+     - Telas pequenas: 2 colunas
+     - Telas médias: 4 colunas
+     - Telas grandes: 6 colunas
+  */
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+/* Ajusta o tamanho do card no grid */
+.movie-grid-container .movie-card {
+  flex-basis: 0; /* Reseta o flex-basis do carrossel */
+  width: 100%; /* Ocupa 100% da célula do grid */
+}
+
+/* Mensagem de "Nenhum resultado" */
+.no-results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.no-results-container h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}

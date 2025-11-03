@@ -1,0 +1,136 @@
+/* ===== SEÇÃO PRINCIPAL (HERO) ===== */
+.hero {
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ===== CAMADA DE FUNDO (GRADIENTE) ===== */
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(127, 29, 29, 0.2),
+    rgba(17, 24, 39, 0.4),
+    rgba(30, 58, 138, 0.2)
+  );
+}
+
+/* ===== GRADE DECORATIVA (EFEITO DE LINHAS) ===== */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ===== CONTEÚDO PRINCIPAL DO HERO ===== */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 0 1.5rem;
+  max-width: 56rem;
+}
+
+/* ===== TÍTULO PRINCIPAL ===== */
+.hero-title {
+  font-size: 3.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #ffffff, #88b7ff, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== SUBTÍTULO ===== */
+.hero-subtitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+/* ===== CONTAINER DOS BOTÕES ===== */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* ===== ESTILO GERAL DOS BOTÕES ===== */
+.btnss {
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ===== BOTÃO PRIMÁRIO (principal) ===== */
+.btnn-primary {
+  background: #88b7ff;
+  color: #030712;
+  box-shadow: 0 10px 30px rgba(38, 117, 220, 0.3);
+  border: 2px solid #88b7ff;
+}
+
+.btnn-primary:hover {
+  background: #74a9fa;
+}
+
+/* ===== BOTÃO SECUNDÁRIO (transparente) ===== */
+.btnn-secondary {
+  background: transparent;
+  color: white;
+  box-shadow: 0 10px 30px rgba(38, 117, 220, 0.3);
+  border: 2px solid #88b7ff;
+}
+
+.btnn-secondary:hover {
+  background: rgba(38, 117, 220, 0.3);
+}
+
+/* ===== ÍCONE DENTRO DO BOTÃO ===== */
+.square-pen {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-eye {
+  width: 1.20rem;
+  height: 1.20rem;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+}
+  

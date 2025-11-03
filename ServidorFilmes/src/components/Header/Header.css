@@ -1,0 +1,160 @@
+/* ===== CABEÇALHO PRINCIPAL ===== */
+.header {
+  background: rgba(17, 24, 39, 0.5);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* ===== CONTAINER GERAL DO HEADER ===== */
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+/* ===== CONTEÚDO DO HEADER (LOGO, BUSCA, LINKS) ===== */
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+/* ===== LOGO ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  width: auto;
+  gap: 0.5rem;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* ===== ÁREA DE PESQUISA ===== */
+.search-wrapper {
+  flex: 1;
+  max-width: 36rem;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #9ca3af;
+}
+
+.search-input {
+  width: 100%;
+  background: #1f2937;
+  border: 1px solid #2d3748;
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem 0.625rem 2.75rem;
+  font-size: 0.875rem;
+  color: white;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.search-input:focus {
+  border-color: #88b7ff;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.search-input::placeholder {
+  color: #6b7280;
+}
+
+/* ===== NAVEGAÇÃO ===== */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link {
+   display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  font-size: 15px;
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s;
+  gap: 0.25rem; 
+}
+
+.nav-link:hover,
+.nav-link.active:hover {
+  color: #74a9fa;
+}
+
+.nav-link.active {
+  color: white;
+}
+
+.icon-home, .icon-add,
+.icon-play{
+  width: 2rem;
+  height: 2rem;
+
+}
+
+/* ===== BOTÃO DE LOGIN ===== */
+.login-buttonn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #88b7ff;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 15px;
+  color: #030712;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-buttonn:hover {
+  background: #74a9fa;
+}
+
+/* ===== BOTÃO DE CADASTRO ===== */
+.register-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #88b7ff;
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 15px;
+  color: #030712;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.register-button:hover {
+  background: #74a9fa;
+}
+
+/* ===== ÍCONE DO USUÁRIO ===== */
+.user-icon, .register-icon {
+  width: 1.3rem;
+  height: 1.3rem;
+}

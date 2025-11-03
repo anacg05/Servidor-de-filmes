@@ -1,0 +1,306 @@
+/* Importa a fonte Inter do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ===== CONTAINER PRINCIPAL (tela de login) ===== */
+.login-container {
+  min-height: 100vh; /* Ocupa toda a altura da tela */
+  display: flex; /* Centraliza o card usando flexbox */
+  align-items: center; /* Alinha verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%); /* Fundo em degradê escuro */
+  padding: 20px; /* Espaçamento nas bordas */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Fonte padrão */
+}
+
+/* ===== CARD DE LOGIN ===== */
+.login-card {
+  background: #1e2936; /* Fundo escuro do card */
+  border-radius: 16px; /* Bordas arredondadas */
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); /* Sombra profunda */
+  width: 100%; /* Largura total dentro do limite */
+  max-width: 440px; /* Largura máxima */
+  overflow: hidden; /* Esconde conteúdo que ultrapassa */
+}
+
+/* ===== CABEÇALHO DO CARD ===== */
+.login-header {
+  background: #161f2b; /* Fundo levemente mais escuro */
+  padding: 32px; /* Espaçamento interno */
+  text-align: center; /* Centraliza o conteúdo */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Linha sutil inferior */
+}
+
+/* ===== LOGO ===== */
+.logo {
+  display: inline-flex; /* Ícone e texto lado a lado */
+  align-items: center; /* Centraliza verticalmente */
+  gap: 12px; /* Espaço entre ícone e texto */
+}
+
+.logo-text {
+  font-size: 28px; /* Tamanho da marca */
+  font-weight: 700; /* Negrito */
+  color: #ffffff; /* Branco */
+  letter-spacing: -0.5px; /* Espaçamento de letras menor */
+}
+
+/* ===== CONTEÚDO DO CARD ===== */
+.login-content {
+  padding: 40px 32px; /* Espaçamento interno */
+}
+
+/* ===== TÍTULOS ===== */
+.login-title {
+  font-size: 28px; /* Título principal */
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.login-subtitle {
+  font-size: 15px; /* Subtítulo menor */
+  color: #8b96a5; /* Cinza claro */
+  margin: 0 0 32px 0;
+  text-align: center;
+}
+
+/* ===== FORMULÁRIO ===== */
+.login-form {
+  display: flex;
+  flex-direction: column; /* Campos em coluna */
+  gap: 20px; /* Espaçamento entre campos */
+}
+
+/* ===== MENSAGEM DE ERRO ===== */
+.error-message {
+  background: rgba(239, 68, 68, 0.1); /* Fundo vermelho translúcido */
+  border: 1px solid rgba(239, 68, 68, 0.3); /* Borda avermelhada */
+  color: #fca5a5; /* Texto vermelho claro */
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ===== CAMPOS DE FORMULÁRIO ===== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e1e7ef;
+  letter-spacing: 0.2px;
+}
+
+.form-group input {
+  background: #0f1419; /* Fundo escuro */
+  border: 1px solid #2d3748; /* Borda sutil */
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #ffffff;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.form-group input::placeholder {
+  color: #5a6576; /* Cinza do placeholder */
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #74a9fa; /* Borda azul no foco */
+  box-shadow: 0 0 0 3px rgba(107, 158, 255, 0.1); /* Brilho azul suave */
+}
+
+.form-group input:disabled {
+  opacity: 0.5; /* Campo esmaecido */
+  cursor: not-allowed; /* Mostra que não pode clicar */
+}
+
+/* ===== LINKS E RODAPÉ DO FORM ===== */
+.form-footer {
+  display: flex;
+  justify-content: flex-end; /* Alinha à direita */
+  margin-top: -8px;
+}
+
+.forgot-password {
+  font-size: 14px;
+  color: #88b7ff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.forgot-password:hover {
+  color: #74a9fa; /* Azul mais claro no hover */
+}
+
+/* ===== BOTÃO DE LOGIN ===== */
+.login-button {
+  background: #88b7ff; /* Fundo azul claro */
+  color: black; /* Texto preto */
+  border: none;
+  border-radius: 8px;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+  font-family: inherit;
+}
+
+.login-button:hover:not(:disabled) {
+  background: #74a9fa; /* Azul mais vivo no hover */
+  transform: translateY(-1px); /* Leve subida */
+  box-shadow: 0 4px 12px rgba(107, 158, 255, 0.3); /* Sombra suave */
+}
+
+.login-button:active:not(:disabled) {
+  transform: translateY(0); /* Volta ao normal no clique */
+}
+
+.login-button:disabled {
+  opacity: 0.6; /* Aparência desativada */
+  cursor: not-allowed;
+}
+
+/* ===== DIVISOR “OU CONTINUE COM” ===== */
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 24px 0;
+}
+
+.divider::before {
+  content: ''; /* Linha horizontal */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.divider span {
+  position: relative;
+  background: #1e2936; /* Fundo do texto */
+  padding: 0 16px;
+  font-size: 14px;
+  color: #8b96a5;
+}
+
+/* ===== BOTÕES SOCIAIS (Google, GitHub) ===== */
+.social-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.social-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #0f1419;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #e1e7ef;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.social-button:hover {
+  background: #161f2b;
+  border-color: #3d4858;
+  transform: translateY(-1px);
+}
+
+.social-button:active {
+  transform: translateY(0);
+}
+
+.social-button svg {
+  flex-shrink: 0; /* Impede distorção do ícone */
+}
+
+/* ===== LINK DE CADASTRO ===== */
+.signup-link {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: #8b96a5;
+}
+
+.signup-link a {
+  color: #88b7ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.signup-link a:hover {
+  color: #74a9fa;
+}
+
+/* ===== BOTÃO DE VOLTAR ===== */
+.back-button {
+  position: absolute; /* Fixa no canto da tela */
+  top: 50px;
+  left: 50px;
+  display: flex; /* Ícone + texto */
+  align-items: center;
+  gap: 8px;
+  background: #88b7ff;
+  color: black;
+  border: 1px solid rgba(136, 183, 255, 0.3);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  z-index: 50;
+}
+
+.back-button:hover {
+  background: #74a9fa;
+  transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVIDADE (mobile) ===== */
+@media (max-width: 480px) {
+  .back-button {
+    top: 16px; /* Aproxima do topo */
+    left: 16px; /* Aproxima da lateral */
+    padding: 8px 12px; /* Menor tamanho */
+    font-size: 14px;
+  }
+
+  .login-card {
+    border-radius: 0; /* Remove bordas arredondadas */
+  }
+
+  .login-header {
+    padding: 24px;
+  }
+
+  .login-content {
+    padding: 32px 24px;
+  }
+
+  .login-title {
+    font-size: 24px; /* Título menor */
+  }
+}
