@@ -32,17 +32,7 @@
   margin: 0;
 }
 
-.see-all {
-  color: #88b7ff;
-  font-weight: 500;
-  font-size: 1.1rem;
-  text-decoration: none;
-  transition: color 0.2s;
-}
 
-.see-all:hover {
-  color: #74a9fa;
-}
 
 /* ===== CARROSSEL COM SETAS ===== */
 .carousel-container {
@@ -104,7 +94,7 @@
   flex: 0 0 180px;
   cursor: pointer;
   transition: transform 0.3s ease; /* 🔹 suaviza zoom no hover */
-  scroll-snap-align: start; /* 🔹 o card “trava” no início ao parar o scroll */
+  scroll-snap-align: start; 
 }
 
 .movie-card:hover {

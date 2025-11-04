@@ -20,9 +20,7 @@ function FeaturedMovies() {
           </svg>
           <h2 className="section-title">Filmes em Destaque</h2>
         </div>
-        <a href="#" className="see-all">
-          Ver Todos
-        </a>
+       
       </div>
 
       <div className="movies-grid">

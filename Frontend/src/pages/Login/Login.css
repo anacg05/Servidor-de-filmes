@@ -159,7 +159,6 @@
 .login-button:hover:not(:disabled) {
   background: #74a9fa; /* Azul mais vivo no hover */
   transform: translateY(-1px); /* Leve subida */
-  box-shadow: 0 4px 12px rgba(107, 158, 255, 0.3); /* Sombra suave */
 }
 
 .login-button:active:not(:disabled) {

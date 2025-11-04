@@ -38,11 +38,7 @@ function MoviesCarousel({ title, movies, seeAllLink }) {
           <h2 className="section-title">{title}</h2>
         </div>
 
-        {seeAllLink && (
-          <a href={seeAllLink} className="see-all">
-            Ver Todos
-          </a>
-        )}
+        
       </div>
 
       {/* ===== CARROSSEL ===== */}
