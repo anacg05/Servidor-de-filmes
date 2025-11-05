@@ -157,16 +157,15 @@
 }
 
 .login-button:hover:not(:disabled) {
-  background: #74a9fa; /* Azul mais vivo no hover */
-  transform: translateY(-1px); /* Leve subida */
+  background: #74a9fa; 
 }
 
 .login-button:active:not(:disabled) {
-  transform: translateY(0); /* Volta ao normal no clique */
+  transform: translateY(0);
 }
 
 .login-button:disabled {
-  opacity: 0.6; /* Aparência desativada */
+  opacity: 0.6; 
   cursor: not-allowed;
 }
 
@@ -275,7 +274,6 @@
 
 .back-button:hover {
   background: #74a9fa;
-  transform: translateY(-2px);
 }
 
 /* ===== RESPONSIVIDADE (mobile) ===== */

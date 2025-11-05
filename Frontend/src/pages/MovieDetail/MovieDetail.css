@@ -36,7 +36,6 @@
 
 .detail-back-button:hover {
   background: #74a9fa;
-  transform: translateY(-2px);
 }
 
 /* Mensagem de erro */

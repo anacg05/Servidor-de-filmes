@@ -4,31 +4,6 @@
     box-sizing: border-box;
 }
 
-/* ===== BOTÃO DE VOLTAR ===== */
-.back-button2 {
-  position: absolute; /* Fixa no canto da tela */
-  top: 16%;
-  left: 23%;
-  display: flex; /* Ícone + texto */
-  align-items: center;
-  gap: 8px;
-  background: #88b7ff;
-  color: black;
-  border: 1px solid rgba(136, 183, 255, 0.3);
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  z-index: 50;
-}
-
-.back-button2:hover {
-  background: #74a9fa;
-  transform: translateY(-2px);
-}
-
 .add-movie-container {
     max-width: 800px;
     margin: 3rem auto;

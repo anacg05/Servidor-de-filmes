@@ -140,7 +140,6 @@ min-height: 100vh;
 
 .cadastro-button:hover:not(:disabled) {
   background: #74a9fa;
-  transform: translateY(-1px);
 }
 
 .cadastro-button:active:not(:disabled) {
@@ -257,7 +256,6 @@ min-height: 100vh;
 
 .back-button:hover {
  background: #88b7ff;
-  transform: translateY(-2px);
 }
 
 /* ===== RESPONSIVIDADE (Mobile) ===== */

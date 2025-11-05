@@ -76,11 +76,6 @@ export default function AddMovie({ movies, setMovies }) {
   return (
     <>
       <Header />
-      {/* 🔹 Botão de voltar */}
-      <Link to="/" className="back-button2">
-        <ArrowLeft size={22} />
-        <span>Voltar</span>
-      </Link>
 
 
       <div className="add-movie-container">

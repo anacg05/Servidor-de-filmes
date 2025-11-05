@@ -58,7 +58,6 @@
 }
 .filter-btn.btn-back:hover {
   background: #74a9fa;
-  transform: translateY(-2px);
 }
 
 /* Botão de Limpar (estilo secundário/ghost) */
@@ -68,7 +67,7 @@
   border: 1px solid #2d3748; /* Borda dos inputs */
 }
 .filter-btn.btn-clear:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: #ffffff0d;
   color: white;
 }
 
