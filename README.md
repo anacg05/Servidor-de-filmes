@@ -49,3 +49,53 @@ Para rodar tanto o Backend quanto o Frontend, são necessárias as instalações
 #### Instalação das dependências do backend:
 ```bash
 pip install -r requirements.txt
+```
+
+### Rodar o servidor do backend:
+```bash
+python app.py
+```
+
+### Banco de dados MySQL
+
+Crie e configure o banco de dados MySQL com as tabelas necessárias conforme o script disponível na pasta database.
+
+### 💻 Frontend
+
+> [!IMPORTANT] Necessário estar na pasta **Frontend** para rodar o projeto React.
+
+#### Para instalar todas as dependências do projeto:
+```bash
+npm install
+```
+
+#### Para rodar o projeto frontend:
+```bash
+npm run dev
+```
+
+### Bibliotecas utilizadas:
+
+React Router Dom para gerenciamento das rotas do site:
+```bash
+npm install react-router-dom
+```
+
+Axios para fazer requisições HTTP:
+```bash
+npm install axios
+```
+
+React Icons para ícones:
+```bash
+npm install react-icons
+```
+
+## Protótipo do projeto
+
+O protótipo com o fluxo inicial dos usuários foi desenvolvido no Figma, incluindo uma breve documentação do projeto com justificativas de decisões de estilo e uma explicação detalhada sobre o público-alvo e a proposta do projeto.
+<a href="" target="_blank"><img width="180" loading="lazy" src="https://img.shields.io/badge/Acesse%20o%20protótipo-4B5B96?style=for-the-bagde&logo=figma&logoColor=white" target="_blank"></a> 
+<br/>
+
+## Tecnologias utilizadas
+<img src="https://skillicons.dev/icons?i=react,python,mysql,figma&perline=10" alt="Tecnologias do projeto" />
