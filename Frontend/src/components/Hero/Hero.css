@@ -5,18 +5,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: hidden; 
 }
 
 /* ===== CAMADA DE FUNDO (GRADIENTE) ===== */
 .hero-background {
   position: absolute;
-  inset: 0;
+  inset: 0; 
   background: linear-gradient(
     to right,
-    rgba(127, 29, 29, 0.2),
-    rgba(17, 24, 39, 0.4),
-    rgba(30, 58, 138, 0.2)
+    rgba(127, 29, 29, 0.2), 
+    rgba(17, 24, 39, 0.4), 
+    rgba(30, 58, 138, 0.2) 
   );
 }
 
@@ -26,15 +26,15 @@
   inset: 0;
   opacity: 0.3;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); 
   background-size: 40px 40px;
 }
 
-/* ===== CONTEÚDO PRINCIPAL DO HERO ===== */
+/* ===== CONTEÚDO PRINCIPAL DO HERO (TEXTOS E BOTÕES) ===== */
 .hero-content {
   position: relative;
-  z-index: 10;
+  z-index: 10; 
   text-align: center;
   padding: 0 1.5rem;
   max-width: 56rem;
@@ -66,7 +66,7 @@
   justify-content: center;
 }
 
-/* ===== ESTILO GERAL DOS BOTÕES ===== */
+/* ===== ESTILO GERAL DOS BOTÕES (HERO) ===== */
 .btnss {
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
@@ -80,7 +80,7 @@
   gap: 0.5rem;
 }
 
-/* ===== BOTÃO PRIMÁRIO (principal) ===== */
+/* ===== BOTÃO PRIMÁRIO (VER FILMES) ===== */
 .btnn-primary {
   background: #88b7ff;
   color: #030712;
@@ -92,7 +92,7 @@
   background: #74a9fa;
 }
 
-/* ===== BOTÃO SECUNDÁRIO (transparente) ===== */
+/* ===== BOTÃO SECUNDÁRIO (EDITAR FILME) ===== */
 .btnn-secondary {
   background: transparent;
   color: white;
@@ -101,21 +101,17 @@
 }
 
 .btnn-secondary:hover {
-  background: #2675dc4d;
+  background: #2675dc4d; 
 }
 
 /* ===== ÍCONE DENTRO DO BOTÃO ===== */
-.square-pen {
+.square-pen,
+.icon-eye {
   width: 1.25rem;
   height: 1.25rem;
 }
 
-.icon-eye {
-  width: 1.20rem;
-  height: 1.20rem;
-}
-
-/* ===== RESPONSIVIDADE ===== */
+/* ===== RESPONSIVIDADE (MOBILE) ===== */
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2.5rem;
@@ -125,12 +121,8 @@
     font-size: 2rem;
   }
 
-  .hero-description {
-    font-size: 1rem;
-  }
 
   .hero-buttons {
-    flex-direction: column;
+    flex-direction: column; 
   }
 }
-  

@@ -1,9 +1,11 @@
+/* ===== CONTAINER DA PÁGINA DE EDIÇÃO ===== */
 .edit-movie-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
   padding: 80px 20px 40px;
 }
 
+/* ===== CONTEÚDO PRINCIPAL (TÍTULO + LAYOUT) ===== */
 .edit-movie-content {
   max-width: 1400px;
   margin: 0 auto;
@@ -23,6 +25,7 @@
   font-size: 1.1rem;
 }
 
+/* ===== MENSAGENS DE FEEDBACK (SUCESSO/ERRO) ===== */
 .message {
   padding: 1rem;
   border-radius: 8px;
@@ -43,23 +46,26 @@
   color: #ef4444;
 }
 
+/* ===== LAYOUT EM GRID (LISTA DE FILMES | FORMULÁRIO) ===== */
 .edit-layout {
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: 400px 1fr; 
   gap: 2rem;
   margin-top: 2rem;
 }
 
+/* ===== SEÇÃO DA LISTA DE FILMES ===== */
 .movie-list-section {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   padding: 1.5rem;
-  height: fit-content;
-  max-height: calc(100vh - 200px);
+  height: fit-content; 
+  max-height: calc(100vh - 200px); 
   display: flex;
   flex-direction: column;
 }
 
+/* ===== CAIXA DE BUSCA (FILTRAR LISTA) ===== */
 .search-box {
   margin-bottom: 1rem;
 }
@@ -85,30 +91,30 @@
   color: #a0a0a0;
 }
 
+/* ===== LISTA DE FILMES (SCROLLÁVEL) ===== */
 .movie-list {
   overflow-y: auto;
-  max-height: calc(100vh - 300px);
-  padding-right: 0.5rem;
+  max-height: calc(100vh - 300px); 
+  padding-right: 0.5rem; 
 }
 
+/* ESTILO DA BARRA DE ROLAGEM (WEBKIT) */
 .movie-list::-webkit-scrollbar {
   width: 6px;
 }
-
 .movie-list::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 3px;
 }
-
 .movie-list::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 3px;
 }
-
 .movie-list::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.3);
 }
 
+/* FEEDBACK (CARREGANDO / NENHUM FILME) */
 .loading,
 .no-movies {
   text-align: center;
@@ -116,6 +122,7 @@
   padding: 2rem;
 }
 
+/* ===== ITEM INDIVIDUAL DA LISTA DE FILMES ===== */
 .movie-item {
   display: flex;
   gap: 1rem;
@@ -135,9 +142,10 @@
 
 .movie-item.selected {
   background: rgba(96, 165, 250, 0.2);
-  border-color: #60a5fa;
+  border-color: #60a5fa; 
 }
 
+/* POSTER (MINIATURA) */
 .movie-poster {
   width: 60px;
   height: 90px;
@@ -161,9 +169,10 @@
   color: #666;
 }
 
+/* INFORMAÇÕES (TÍTULO, ANO, TAG) */
 .movie-info {
   flex: 1;
-  min-width: 0;
+  min-width: 0; 
 }
 
 .movie-info h3 {
@@ -172,7 +181,7 @@
   margin: 0 0 0.25rem 0;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; 
 }
 
 .movie-info p {
@@ -190,12 +199,14 @@
   border-radius: 4px;
 }
 
+/* ===== SEÇÃO DO FORMULÁRIO DE EDIÇÃO ===== */
 .edit-form-section {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   padding: 2rem;
 }
 
+/* AVISO (QUANDO NENHUM FILME ESTÁ SELECIONADO) */
 .no-selection {
   display: flex;
   align-items: center;
@@ -205,12 +216,14 @@
   font-size: 1.1rem;
 }
 
+/* TÍTULO DO FORMULÁRIO */
 .edit-form h2 {
   font-size: 1.75rem;
   color: #ffffff;
   margin-bottom: 1.5rem;
 }
 
+/* GRUPO DE FORMULÁRIO (LABEL + INPUT) */
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -248,12 +261,14 @@
   min-height: 100px;
 }
 
+/* LINHA DO FORMULÁRIO (GRID DE 2 COLUNAS) */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
+/* AÇÕES DO FORMULÁRIO (BOTÕES) */
 .form-actions {
   display: flex;
   gap: 1rem;
@@ -261,6 +276,7 @@
   justify-content: flex-end;
 }
 
+/* ESTILO DOS BOTÕES (CANCELAR E SUBMIT) */
 .btn-cancel,
 .btn-submit {
   padding: 0.75rem 2rem;
@@ -297,31 +313,33 @@
   cursor: not-allowed;
 }
 
+/* ===== RESPONSIVIDADE (TABLET) ===== */
 @media (max-width: 1024px) {
   .edit-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; 
   }
 
   .movie-list-section {
-    max-height: 400px;
+    max-height: 400px; 
   }
 }
 
+/* ===== RESPONSIVIDADE (MOBILE) ===== */
 @media (max-width: 768px) {
   .edit-movie-content h1 {
     font-size: 2rem;
   }
 
   .form-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; 
   }
 
   .form-actions {
-    flex-direction: column;
+    flex-direction: column; 
   }
 
   .btn-cancel,
   .btn-submit {
-    width: 100%;
+    width: 100%; 
   }
 }

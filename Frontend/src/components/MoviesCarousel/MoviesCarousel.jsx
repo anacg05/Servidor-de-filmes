@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom"; // 1. Importar Link
+import { Link } from "react-router-dom"; 
 import "./MoviesCarousel.css";
+// ⭐ 1. Importar o ícone 'Play'
+import { Play } from "lucide-react";
 
 function MoviesCarousel({ title, movies, seeAllLink }) {
   const carouselRef = useRef(null);
@@ -13,11 +15,8 @@ function MoviesCarousel({ title, movies, seeAllLink }) {
     carouselRef.current.scrollBy({ left: 400, behavior: "smooth" });
   };
 
-  // 2. Adicionar ID ao filme se não existir (para a URL)
-  // O seu AddMovie.jsx cria um 'id' com Date.now(), o que é ótimo.
-  // Se os filmes de ListarFilmes não tiverem, isso garante um fallback.
   const getMovieId = (movie) => {
-    return movie.id || movie.title.toLowerCase().replace(/ /g, '-');
+    return movie.id_filme || movie.titulo.toLowerCase().replace(/ /g, '-');
   };
 
   return (
@@ -25,16 +24,10 @@ function MoviesCarousel({ title, movies, seeAllLink }) {
       {/* ... (cabeçalho da seção não muda) ... */}
       <div className="section-header">
         <div className="section-title-wrapper">
-          <svg
-            className="section-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-            <polyline points="17 6 23 6 23 12"></polyline>
-          </svg>
+          
+          {/* ⭐ 2. Substituímos o SVG do gráfico pelo ícone 'Play' */}
+          <Play className="section-icon" />
+
           <h2 className="section-title">{title}</h2>
         </div>
 
@@ -50,16 +43,16 @@ function MoviesCarousel({ title, movies, seeAllLink }) {
         <div className="movies-grid" ref={carouselRef}>
           {movies && movies.length > 0 ? (
             movies.map((movie, index) => (
-              // 3. Envolver o card com o Link
+              
               <Link
                 key={index}
-                to={`/filme/${getMovieId(movie)}`} // URL amigável
-                state={{ movie: movie }} // Passa o objeto filme completo
-                className="movie-card" // Mover a classe para o Link
+                to={`/filme/${getMovieId(movie)}`} 
+                state={{ movie: movie }} 
+                className="movie-card" 
               >
                 <div className="movie-poster">
                   {movie.poster ? (
-                    <img src={movie.poster} alt={movie.title} />
+                    <img src={movie.poster} alt={movie.titulo} />
                   ) : (
                     <div
                       className="poster-placeholder"
@@ -71,10 +64,10 @@ function MoviesCarousel({ title, movies, seeAllLink }) {
                   <div className="poster-overlay"></div>
                 </div>
 
-                <h3 className="movie-title">{movie.title}</h3>
+                <h3 className="movie-title">{movie.titulo}</h3>
 
                 <div className="movie-info">
-                  <span className="movie-year">{movie.year}</span>
+                  <span className="movie-year">{movie.ano}</span>
                   <div className="movie-rating">
                     <svg
                       className="star-icon"

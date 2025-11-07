@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
 import Icon from '../../assets/icon_64.png';
 import './Login.css';
 
@@ -30,11 +29,6 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      {/* 🔹 Botão de voltar */}
-      <Link to="/" className="back-button">
-        <ArrowLeft size={22} />
-        <span>Voltar</span>
-      </Link>
 
       <div className="login-card">
         <div className="login-header">

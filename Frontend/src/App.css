@@ -1,3 +1,4 @@
+/* ===== RESET GERAL E FONTES ===== */
 * {
   margin: 0;
   padding: 0;
@@ -12,12 +13,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ===== ESTILO BASE DO APP ===== */
 .app {
   min-height: 100vh;
   background: #030712;
   color: white;
 }
 
+/* ===== RESET DE LINKS ===== */
 a {
   text-decoration: none;
   color: inherit;

@@ -1,57 +1,59 @@
-/* Importa a fonte Inter do Google Fonts */
+/* ===== IMPORTAÇÃO DA FONTE ===== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* ===== CONTAINER PRINCIPAL (tela de login) ===== */
+/* ===== CONTAINER PRINCIPAL (TELA DE LOGIN) ===== */
 .login-container {
-  min-height: 100vh; /* Ocupa toda a altura da tela */
-  display: flex; /* Centraliza o card usando flexbox */
-  align-items: center; /* Alinha verticalmente */
-  justify-content: center; /* Centraliza horizontalmente */
-  background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%); /* Fundo em degradê escuro */
-  padding: 20px; /* Espaçamento nas bordas */
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Fonte padrão */
+  min-height: 100vh; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%); 
+  padding: 20px; 
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
 }
 
 /* ===== CARD DE LOGIN ===== */
 .login-card {
-  background: #1e2936; /* Fundo escuro do card */
-  border-radius: 16px; /* Bordas arredondadas */
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); /* Sombra profunda */
-  width: 100%; /* Largura total dentro do limite */
-  max-width: 440px; /* Largura máxima */
-  overflow: hidden; /* Esconde conteúdo que ultrapassa */
+  background: #1e2936; 
+  border-radius: 16px; 
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); 
+  width: 100%; 
+  max-width: 440px; 
+  overflow: hidden; 
 }
 
 /* ===== CABEÇALHO DO CARD ===== */
 .login-header {
-  background: #161f2b; /* Fundo levemente mais escuro */
-  padding: 32px; /* Espaçamento interno */
-  text-align: center; /* Centraliza o conteúdo */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Linha sutil inferior */
+  background: #161f2b; 
+  padding: 32px; 
+  text-align: center; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
 }
 
 /* ===== LOGO ===== */
 .logo {
-  display: inline-flex; /* Ícone e texto lado a lado */
-  align-items: center; /* Centraliza verticalmente */
-  gap: 12px; /* Espaço entre ícone e texto */
+  display: inline-flex; 
+  align-items: center; 
+  gap: 12px; 
 }
 
+
+
 .logo-text {
-  font-size: 28px; /* Tamanho da marca */
-  font-weight: 700; /* Negrito */
-  color: #ffffff; /* Branco */
-  letter-spacing: -0.5px; /* Espaçamento de letras menor */
+  font-size: 28px; 
+  font-weight: 700; 
+  color: #ffffff; 
+  letter-spacing: -0.5px;
 }
 
 /* ===== CONTEÚDO DO CARD ===== */
 .login-content {
-  padding: 40px 32px; /* Espaçamento interno */
+  padding: 40px 32px; 
 }
 
 /* ===== TÍTULOS ===== */
 .login-title {
-  font-size: 28px; /* Título principal */
+  font-size: 28px;
   font-weight: 700;
   color: #ffffff;
   margin: 0 0 8px 0;
@@ -59,8 +61,8 @@
 }
 
 .login-subtitle {
-  font-size: 15px; /* Subtítulo menor */
-  color: #8b96a5; /* Cinza claro */
+  font-size: 15px; 
+  color: #8b96a5; 
   margin: 0 0 32px 0;
   text-align: center;
 }
@@ -68,15 +70,15 @@
 /* ===== FORMULÁRIO ===== */
 .login-form {
   display: flex;
-  flex-direction: column; /* Campos em coluna */
-  gap: 20px; /* Espaçamento entre campos */
+  flex-direction: column; 
+  gap: 20px; 
 }
 
 /* ===== MENSAGEM DE ERRO ===== */
 .error-message {
-  background: rgba(239, 68, 68, 0.1); /* Fundo vermelho translúcido */
-  border: 1px solid rgba(239, 68, 68, 0.3); /* Borda avermelhada */
-  color: #fca5a5; /* Texto vermelho claro */
+  background: rgba(239, 68, 68, 0.1); 
+  border: 1px solid rgba(239, 68, 68, 0.3); 
+  color: #fca5a5; 
   padding: 12px 16px;
   border-radius: 8px;
   font-size: 14px;
@@ -98,8 +100,8 @@
 }
 
 .form-group input {
-  background: #0f1419; /* Fundo escuro */
-  border: 1px solid #2d3748; /* Borda sutil */
+  background: #0f1419; 
+  border: 1px solid #2d3748; 
   border-radius: 8px;
   padding: 12px 16px;
   font-size: 15px;
@@ -109,24 +111,24 @@
 }
 
 .form-group input::placeholder {
-  color: #5a6576; /* Cinza do placeholder */
+  color: #5a6576; 
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #74a9fa; /* Borda azul no foco */
-  box-shadow: 0 0 0 3px rgba(107, 158, 255, 0.1); /* Brilho azul suave */
+  border-color: #74a9fa; 
+  box-shadow: 0 0 0 3px rgba(107, 158, 255, 0.1); 
 }
 
 .form-group input:disabled {
-  opacity: 0.5; /* Campo esmaecido */
-  cursor: not-allowed; /* Mostra que não pode clicar */
+  opacity: 0.5; 
+  cursor: not-allowed; 
 }
 
 /* ===== LINKS E RODAPÉ DO FORM ===== */
 .form-footer {
   display: flex;
-  justify-content: flex-end; /* Alinha à direita */
+  justify-content: flex-end; 
   margin-top: -8px;
 }
 
@@ -138,13 +140,13 @@
 }
 
 .forgot-password:hover {
-  color: #74a9fa; /* Azul mais claro no hover */
+  color: #74a9fa; 
 }
 
 /* ===== BOTÃO DE LOGIN ===== */
 .login-button {
-  background: #88b7ff; /* Fundo azul claro */
-  color: black; /* Texto preto */
+  background: #88b7ff; 
+  color: black; 
   border: none;
   border-radius: 8px;
   padding: 14px 24px;
@@ -177,7 +179,7 @@
 }
 
 .divider::before {
-  content: ''; /* Linha horizontal */
+  content: ''; 
   position: absolute;
   top: 50%;
   left: 0;
@@ -188,13 +190,13 @@
 
 .divider span {
   position: relative;
-  background: #1e2936; /* Fundo do texto */
+  background: #1e2936; 
   padding: 0 16px;
   font-size: 14px;
   color: #8b96a5;
 }
 
-/* ===== BOTÕES SOCIAIS (Google, GitHub) ===== */
+/* ===== BOTÕES SOCIAIS (GOOGLE, GITHUB) ===== */
 .social-buttons {
   display: flex;
   gap: 12px;
@@ -230,7 +232,7 @@
 }
 
 .social-button svg {
-  flex-shrink: 0; /* Impede distorção do ícone */
+  flex-shrink: 0; 
 }
 
 /* ===== LINK DE CADASTRO ===== */
@@ -252,41 +254,18 @@
   color: #74a9fa;
 }
 
-/* ===== BOTÃO DE VOLTAR ===== */
-.back-button {
-  position: absolute; /* Fixa no canto da tela */
-  top: 50px;
-  left: 50px;
-  display: flex; /* Ícone + texto */
-  align-items: center;
-  gap: 8px;
-  background: #88b7ff;
-  color: black;
-  border: 1px solid rgba(136, 183, 255, 0.3);
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  z-index: 50;
-}
 
-.back-button:hover {
-  background: #74a9fa;
-}
-
-/* ===== RESPONSIVIDADE (mobile) ===== */
+/* ===== RESPONSIVIDADE (MOBILE) ===== */
 @media (max-width: 480px) {
   .back-button {
-    top: 16px; /* Aproxima do topo */
-    left: 16px; /* Aproxima da lateral */
-    padding: 8px 12px; /* Menor tamanho */
+    top: 16px; 
+    left: 16px; 
+    padding: 8px 12px; 
     font-size: 14px;
   }
 
   .login-card {
-    border-radius: 0; /* Remove bordas arredondadas */
+    border-radius: 0; 
   }
 
   .login-header {
@@ -298,6 +277,6 @@
   }
 
   .login-title {
-    font-size: 24px; /* Título menor */
+    font-size: 24px; 
   }
 }

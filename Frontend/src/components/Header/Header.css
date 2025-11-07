@@ -1,4 +1,4 @@
-/* ===== CABEÇALHO PRINCIPAL ===== */
+/* ===== CABEÇALHO PRINCIPAL (STICKY) ===== */
 .header {
   background: rgba(17, 24, 39, 0.5);
   backdrop-filter: blur(12px);
@@ -27,8 +27,12 @@
 .logo {
   display: flex;
   align-items: center;
-  width: auto;
   gap: 0.5rem;
+}
+
+.logo img {
+  width: 40px; 
+  height: auto;
 }
 
 .logo-text {
@@ -71,90 +75,40 @@
 
 .search-input:focus {
   border-color: #88b7ff;
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
 .search-input::placeholder {
   color: #6b7280;
 }
 
-/* ===== NAVEGAÇÃO ===== */
+/* ===== NAVEGAÇÃO (LINKS PRINCIPAIS) ===== */
 .nav {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem; 
 }
 
 .nav-link {
-   display: flex;
-  flex-direction: column; 
-  align-items: center;    
-  font-size: 15px;
-  font-weight: 400;
-  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.875rem; 
+  font-weight: 500;
+  color: #9ca3af; 
   text-decoration: none;
-  transition: color 0.2s;
-  gap: 0.25rem; 
+  transition: all 0.2s ease;
+  gap: 0.35rem; 
 }
 
+/* Estado Hover e Ativo */
 .nav-link:hover,
-.nav-link.active:hover {
-  color: #74a9fa;
-}
-
 .nav-link.active {
-  color: white;
+  color: white; 
 }
 
-.icon-home, .icon-add,
-.icon-play{
-  width: 2rem;
-  height: 2rem;
-
-}
-
-/* ===== BOTÃO DE LOGIN ===== */
-.login-buttonn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #88b7ff;
-  border: none;
-  padding: 0.8rem 1rem;
-  border-radius: 15px;
-  color: #030712;
-  font-size: 18px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.login-buttonn:hover {
-  background: #74a9fa;
-}
-
-/* ===== BOTÃO DE CADASTRO ===== */
-.register-button {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #88b7ff;
-  border: none;
-  padding: 0.8rem 1rem;
-  border-radius: 15px;
-  color: #030712;
-  font-size: 18px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.register-button:hover {
-  background: #74a9fa;
-}
-
-/* ===== ÍCONE DO USUÁRIO ===== */
-.user-icon, .register-icon {
-  width: 1.3rem;
-  height: 1.3rem;
+/* ===== ÍCONES LUCIDE ===== */
+.nav-link svg {
+  width: 1.5rem;  
+  height: 1.5rem;
+  stroke-width: 2px; 
 }

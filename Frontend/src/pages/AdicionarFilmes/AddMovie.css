@@ -1,15 +1,18 @@
+/* ===== RESET BÁSICO ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ===== CONTAINER DA PÁGINA ===== */
 .add-movie-container {
     max-width: 800px;
     margin: 3rem auto;
     padding: 0 2rem;
 }
 
+/* ===== CABEÇALHO DA PÁGINA (TÍTULO E SUBTÍTULO) ===== */
 .page-header {
     margin-bottom: 2.5rem;
 }
@@ -28,6 +31,7 @@
     font-size: 1.1rem;
 }
 
+/* ===== CARD DO FORMULÁRIO ===== */
 .form-card {
     background-color: #0f1629;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -35,6 +39,7 @@
     padding: 2.5rem;
 }
 
+/* ===== GRUPO DE FORMULÁRIO (LABEL + INPUT) ===== */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -46,6 +51,7 @@
     font-weight: 500;
 }
 
+/* ===== ESTILO DOS INPUTS, TEXTAREA E SELECT ===== */
 .form-group input,
 .form-group textarea,
 .form-group select {
@@ -78,19 +84,21 @@
     color: rgba(255, 255, 255, 0.4);
 }
 
+/* ===== LINHA DO FORMULÁRIO (PARA GRID DE 2 COLUNAS) ===== */
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
 }
 
+/* ===== AÇÕES DO FORMULÁRIO (BOTÕES) ===== */
 .form-actions {
     display: flex;
     gap: 1rem;
     margin-top: 2rem;
 }
 
-
+/* ===== ESTILO GERAL DOS BOTÕES ===== */
 .btns {
     padding: 0.75rem 2rem;
     border-radius: 0.5rem;
@@ -104,19 +112,20 @@
     gap: 0.5rem;
 }
 
+/* ===== BOTÃO PRIMÁRIO (ADICIONAR) ===== */
 .btn-primary {
     background: #88b7ff;
     color: #030712;
     box-shadow: 0 10px 30px rgba(38, 117, 220, 0.3);
     border: 2px solid #88b7ff;
-    margin-left: 48%;
+    margin-left: 48%; /* Cuidado: Isso pode quebrar o layout */
 }
 
 .btn-primary:hover {
     background: #74a9fa;
-
 }
 
+/* ===== BOTÃO SECUNDÁRIO (CANCELAR) ===== */
 .btn-secondary {
     background: transparent;
     color: white;
@@ -128,10 +137,11 @@
     background: rgba(38, 117, 220, 0.3);
 }
 
+/* ===== MENSAGEM DE SUCESSO ===== */
 .success-message {
     background-color: rgba(74, 222, 128, 0.1);
     border: 1px solid rgba(74, 222, 128, 0.3);
-    color: #4a9eff;
+    color: #4a9eff; /* Cor estranha para sucesso, talvez #4ade80? */
     padding: 1rem;
     border-radius: 8px;
     margin-bottom: 1.5rem;
@@ -143,18 +153,19 @@
     animation: slideDown 0.3s ease;
 }
 
+/* ===== ANIMAÇÃO DAS MENSAGENS ===== */
 @keyframes slideDown {
     from {
         opacity: 0;
         transform: translateY(-10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+/* ===== MENSAGEM DE ERRO ===== */
 .error-message {
     background-color: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.3);
@@ -170,28 +181,10 @@
     animation: slideDown 0.3s ease;
 }
 
+/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-    }
-
-    .header-left {
-        flex-direction: column;
-        gap: 1rem;
-        width: 100%;
-    }
-
-    .search-input {
-        width: 100%;
-    }
-
-    .nav-links {
-        width: 100%;
-        justify-content: center;
-    }
-
+    /* (Estilos do Header que estavam aqui - movidos para Header.css) */
+    
     .form-row {
         grid-template-columns: 1fr;
     }
@@ -203,4 +196,46 @@
     .page-header h1 {
         font-size: 2rem;
     }
+}
+
+
+
+/* ===== ESTILOS PARA O GRUPO DE CHECKBOX (GÊNEROS) ===== */
+.checkbox-group-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.75rem;
+    
+    background-color: #1a2238; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Item individual (Input + Label) */
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; 
+}
+
+/* Reset de estilos para o input[type="checkbox"] */
+.checkbox-item input[type="checkbox"] {
+    width: auto;
+    padding: 0;
+
+    width: 1.15em;
+    height: 1.15em;
+    cursor: pointer;
+    accent-color: #4a9eff;
+}
+
+/* Reset de estilos para o label do checkbox */
+.checkbox-item label {
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400; 
+    cursor: pointer;
 }

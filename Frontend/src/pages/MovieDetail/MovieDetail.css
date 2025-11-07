@@ -1,4 +1,4 @@
-/* Container principal da página */
+/* ===== CONTAINER PRINCIPAL DA PÁGINA ===== */
 .movie-detail-container {
   max-width: 1200px;
   margin: 3rem auto;
@@ -6,16 +6,16 @@
   color: #ffffff;
 }
 
-/* Card que envolve o conteúdo */
+/* ===== CARD QUE ENVOLVE O CONTEÚDO ===== */
 .movie-detail-content {
-  background: rgba(17, 24, 39, 0.5); /* Fundo do Header */
-  border: 1px solid rgba(75, 85, 99, 0.3); /* Borda do Header */
+  background: rgba(17, 24, 39, 0.5); 
+  border: 1px solid rgba(75, 85, 99, 0.3); 
   border-radius: 12px;
   padding: 2.5rem;
   position: relative;
 }
 
-/* Botão de voltar (baseado no AddMovie) */
+/* ===== BOTÃO DE VOLTAR ===== */
 .detail-back-button {
   display: flex;
   align-items: center;
@@ -38,7 +38,7 @@
   background: #74a9fa;
 }
 
-/* Mensagem de erro */
+/* ===== MENSAGEM DE ERRO ===== */
 .detail-error {
   text-align: center;
   font-size: 1.2rem;
@@ -46,15 +46,15 @@
   padding: 4rem;
 }
 
-/* Layout em duas colunas: Poster | Informações */
+/* ===== LAYOUT EM DUAS COLUNAS: POSTER | INFORMAÇÕES ===== */
 .detail-layout {
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 2.5rem;
-  margin-top: 4rem; /* Espaço para o botão de voltar */
+  margin-top: 4rem; 
 }
 
-/* Seção do Poster */
+/* ===== SEÇÃO DO POSTER ===== */
 .detail-poster-section {
   width: 300px;
   flex-shrink: 0;
@@ -69,7 +69,7 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Placeholder para filme sem poster */
+/* ===== PLACEHOLDER PARA FILME SEM POSTER ===== */
 .detail-no-poster {
   width: 100%;
   aspect-ratio: 2 / 3;
@@ -82,12 +82,12 @@
   color: #666;
 }
 
-/* Seção das Informações */
+/* ===== SEÇÃO DAS INFORMAÇÕES ===== */
 .detail-info-section {
   padding-top: 1rem;
 }
 
-/* Título do filme (gradiente do AddMovie) */
+/* ===== TÍTULO DO FILME ===== */
 .detail-title {
   font-size: 2.75rem;
   font-weight: 700;
@@ -98,13 +98,13 @@
   background-clip: text;
 }
 
-/* Meta-dados (Ano, Gênero, Diretor) */
+/* ===== META-DADOS (ANO, GÊNERO, DIRETOR) ===== */
 .detail-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
-  color: #a0a0a0; /* Cor do EditMovie */
+  color: #a0a0a0; 
   font-size: 1rem;
 }
 
@@ -118,7 +118,7 @@
   flex-shrink: 0;
 }
 
-/* Avaliação (estrela do MoviesCarousel) */
+/* ===== AVALIAÇÃO (ESTRELA) ===== */
 .detail-rating {
   display: flex;
   align-items: center;
@@ -134,7 +134,7 @@
   fill: #eab308;
 }
 
-/* Título da Sinopse */
+/* ===== TÍTULO DA SINOPSE ===== */
 .detail-synopsis-title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -144,14 +144,14 @@
   padding-bottom: 0.5rem;
 }
 
-/* Texto da Sinopse */
+/* ===== TEXTO DA SINOPSE ===== */
 .detail-synopsis-text {
   font-size: 1rem;
   color: #d1d5db;
   line-height: 1.6;
 }
 
-/* Responsividade */
+/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 1024px) {
   .detail-layout {
     grid-template-columns: 1fr;

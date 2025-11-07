@@ -4,9 +4,11 @@ import './MovieGrid.css';
 import '../MoviesCarousel/MoviesCarousel.css'; // Reutiliza o CSS do movie-card
 
 function MovieGrid({ movies }) {
-  // Função para criar um ID amigável (copiada do seu MoviesCarousel)
+  // MUDANÇA AQUI: Corrigindo os nomes das propriedades
   const getMovieId = (movie) => {
-    return movie.id || movie.title.toLowerCase().replace(/ /g, '-');
+    // Use 'id_filme' (do DB) em vez de 'id'
+    // Use 'titulo' (do DB) em vez de 'title'
+    return movie.id_filme || movie.titulo.toLowerCase().replace(/ /g, '-');
   };
 
   if (movies.length === 0) {
@@ -22,14 +24,16 @@ function MovieGrid({ movies }) {
     <div className="movie-grid-container">
       {movies.map((movie) => (
         <Link
-          key={movie.id || movie.title}
+          // MUDANÇA AQUI: 'movie.id_filme' e 'movie.titulo'
+          key={movie.id_filme || movie.titulo}
           to={`/filme/${getMovieId(movie)}`}
           state={{ movie: movie }}
           className="movie-card" // Reutiliza o card do carrossel
         >
           <div className="movie-poster">
             {movie.poster ? (
-              <img src={movie.poster} alt={movie.title} />
+              // MUDANÇA AQUI: 'movie.titulo'
+              <img src={movie.poster} alt={movie.titulo} />
             ) : (
               <div
                 className="poster-placeholder"
@@ -39,10 +43,12 @@ function MovieGrid({ movies }) {
             <div className="poster-overlay"></div>
           </div>
 
-          <h3 className="movie-title">{movie.title}</h3>
+          {/* MUDANÇA AQUI: 'movie.titulo' */}
+          <h3 className="movie-title">{movie.titulo}</h3>
 
           <div className="movie-info">
-            <span className="movie-year">{movie.year}</span>
+            {/* MUDANÇA AQUI: 'movie.ano' */}
+            <span className="movie-year">{movie.ano}</span>
             <div className="movie-rating">
               <svg
                 className="star-icon"
@@ -51,6 +57,7 @@ function MovieGrid({ movies }) {
               >
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
               </svg>
+              {/* 'movie.rating' já estava correto */}
               <span className="rating-value">{movie.rating}</span>
             </div>
           </div>

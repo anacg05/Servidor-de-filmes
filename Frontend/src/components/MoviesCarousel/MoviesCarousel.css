@@ -1,11 +1,11 @@
-/* ===== CONTAINER PRINCIPAL ===== */
+/* ===== CONTAINER PRINCIPAL DA SEÇÃO ===== */
 .featured-section {
   max-width: 1280px;
   margin: 0 auto;
   padding: 3rem 1.5rem;
 }
 
-/* ===== CABEÇALHO ===== */
+/* ===== CABEÇALHO DA SEÇÃO (TÍTULO E LINK "VER TUDO") ===== */
 .section-header {
   display: flex;
   align-items: center;
@@ -32,20 +32,20 @@
   margin: 0;
 }
 
-
+/* (Estilo do "Ver Tudo" removido, pois não está no HTML) */
 
 /* ===== CARROSSEL COM SETAS ===== */
 .carousel-container {
   position: relative;
   display: flex;
-  padding: 0 70px;
+  padding: 0 70px; /* Espaço para as setas */
   align-items: center;
 }
 
-/* BOTÕES DE SETA */
+/* ===== BOTÕES DE SETA (NAVEGAÇÃO) ===== */
 .arrow-btn {
   position: absolute;
-  top: 45%; /* centraliza verticalmente */
+  top: 45%; /* Centraliza verticalmente */
   transform: translateY(-50%);
   background: #88b7ff;
   color: white;
@@ -66,44 +66,47 @@
   transform: translateY(-50%) scale(1.1);
 }
 
-/* POSIÇÃO DAS SETAS NAS PONTAS DA PÁGINA */
+/* POSIÇÃO DAS SETAS NAS PONTAS */
 .arrow-btn.left {
-  left: 5px; /* encosta na borda esquerda */
+  left: 5px;
 }
 
 .arrow-btn.right {
-  right: 5px; /* encosta na borda direita */
+  right: 5px;
 }
 
-/* ===== GRADE DE FILMES ===== */
+/* ===== GRADE DE FILMES (CONTEÚDO DO CARROSSEL) ===== */
 .movies-grid {
   display: flex;
   gap: 1.2rem;
   scroll-behavior: smooth;
   padding: 0.6rem 0.6rem; 
-  overflow-x: hidden;
-  scroll-snap-type: x mandatory; /* 🔹 ativa o “encaixe” dos filmes */
+  overflow-x: hidden; /* Esconde a barra de rolagem horizontal */
+  scroll-snap-type: x mandatory; /* Ativa o “encaixe” dos filmes */
 }
 
 .movies-grid::-webkit-scrollbar {
-  display: none; /* oculta a barra de rolagem */
+  display: none; /* Oculta a barra de rolagem (Chrome/Safari) */
 }
 
-/* ===== FILMES ===== */
+/* ===== CARD INDIVIDUAL DO FILME ===== */
 .movie-card {
-  flex: 0 0 180px;
+  flex: 0 0 180px; /* Define o tamanho fixo do card */
   cursor: pointer;
-  transition: transform 0.3s ease; /* 🔹 suaviza zoom no hover */
-  scroll-snap-align: start; 
+  transition: transform 0.3s ease; /* Suaviza zoom no hover */
+  scroll-snap-align: start; /* Ponto de "encaixe" do scroll */
+  text-decoration: none; /* Remove sublinhado do Link */
+  color: inherit; /* Garante que o texto herde a cor */
 }
 
 .movie-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Efeito de zoom */
 }
 
+/* ===== POSTER DO FILME ===== */
 .movie-poster {
   position: relative;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 2 / 3; /* Proporção 2:3 (poster) */
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -111,14 +114,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000; /* fallback caso a imagem demore pra carregar */
+  background: #000; /* Fallback caso a imagem demore */
   transition: transform 0.3s;
 }
 
 .movie-poster img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* garante que a imagem preencha o card sem distorcer */
+  object-fit: cover; /* Garante preenchimento sem distorcer */
   display: block;
   transition: transform 0.3s ease;
 }
@@ -127,6 +130,7 @@
   transform: scale(1.05);
 }
 
+/* ===== SOBREPOSIÇÃO (OVERLAY) DO POSTER ===== */
 .poster-overlay {
   position: absolute;
   inset: 0;
@@ -135,21 +139,28 @@
 }
 
 .movie-card:hover .poster-overlay {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2); /* Escurece levemente no hover */
 }
 
+/* ===== PLACEHOLDER (CASO NÃO TENHA IMAGEM) ===== */
+.poster-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #666;
+}
 
-
-
-
-/* ===== TEXTO ===== */
+/* ===== TEXTO (TÍTULO E INFORMAÇÕES) ===== */
 .movie-title {
   font-size: 15px;
   font-weight: 600;
   color: white;
   margin: 0 0 0.25rem 0;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2; /* Limita o título a 2 linhas */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -174,21 +185,29 @@
 .star-icon {
   width: 0.8rem;
   height: 0.8rem;
-  color: #eab308;
+  color: #eab308; /* Cor da estrela */
+  fill: #eab308; /* Preenchimento da estrela */
 }
 
 .rating-value {
   color: white;
 }
 
-/* ===== RESPONSIVIDADE ===== */
+/* ===== RESPONSIVIDADE (MOBILE) ===== */
 @media (max-width: 768px) {
   .arrow-btn {
-    display: none;
+    display: none; /* Esconde as setas */
   }
 
+  .carousel-container {
+    padding: 0; /* Remove padding lateral */
+  }
+  
+  .movies-grid {
+    overflow-x: auto; /* Permite scroll nativo no mobile */
+  }
 
   .movie-card {
-    flex: 0 0 150px;
+    flex: 0 0 150px; /* Cards menores no mobile */
   }
 }

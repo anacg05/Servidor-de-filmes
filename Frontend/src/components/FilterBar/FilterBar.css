@@ -1,14 +1,14 @@
-/* Container principal do painel de filtro */
+/* ===== CONTAINER PRINCIPAL DO PAINEL DE FILTRO ===== */
 .filter-panel-container {
   max-width: 1280px;
-  margin: 2rem auto; /* Espaço entre Header e Grid */
+  margin: 2rem auto;
   padding: 2rem 2.5rem;
-  background: #111827; /* Fundo escuro (igual ao Footer) */
-  border: 1px solid rgba(75, 85, 99, 0.3); /* Borda (igual ao Header) */
+  background: #111827; 
+  border: 1px solid rgba(75, 85, 99, 0.3); 
   border-radius: 12px;
 }
 
-/* Cabeçalho do painel (Título + Botões) */
+/* ===== CABEÇALHO DO PAINEL (TÍTULO + BOTÕES) ===== */
 .filter-panel-header {
   display: flex;
   justify-content: space-between;
@@ -16,10 +16,10 @@
   margin-bottom: 2rem;
   border-bottom: 1px solid rgba(75, 85, 99, 0.3);
   padding-bottom: 1.5rem;
-  flex-wrap: wrap; /* Permite quebra de linha em telas menores */
+  flex-wrap: wrap;
 }
 
-/* Título (baseado no AddMovie) */
+/* ===== TÍTULO (GRADIENTE) ===== */
 .filter-panel-title {
   font-size: 2.25rem;
   font-weight: 700;
@@ -30,13 +30,13 @@
   margin: 0;
 }
 
-/* Container dos botões de ação */
+/* ===== CONTAINER DOS BOTÕES DE AÇÃO (VOLTAR, LIMPAR) ===== */
 .filter-panel-actions {
   display: flex;
   gap: 1rem;
 }
 
-/* Estilo base dos botões de ação */
+/* ===== ESTILO BASE DOS BOTÕES DE AÇÃO ===== */
 .filter-btn {
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@
   border: none;
 }
 
-/* Botão de Voltar (estilo do AddMovie.css) */
+/* ===== BOTÃO DE VOLTAR (PRIMÁRIO) ===== */
 .filter-btn.btn-back {
   background: #88b7ff;
   color: black;
@@ -60,25 +60,25 @@
   background: #74a9fa;
 }
 
-/* Botão de Limpar (estilo secundário/ghost) */
+/* ===== BOTÃO DE LIMPAR (SECUNDÁRIO/GHOST) ===== */
 .filter-btn.btn-clear {
   background: transparent;
   color: #9ca3af;
-  border: 1px solid #2d3748; /* Borda dos inputs */
+  border: 1px solid #2d3748; 
 }
 .filter-btn.btn-clear:hover {
   background: #ffffff0d;
   color: white;
 }
 
-/* Grid para os filtros */
+/* ===== GRID PARA OS FILTROS (BUSCA, GÊNERO, ANO) ===== */
 .filter-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr; 
   gap: 1.5rem;
 }
 
-/* Grupo de filtro (Label + Input) */
+/* ===== GRUPO DE FILTRO (LABEL + INPUT) ===== */
 .filter-group {
   display: flex;
   flex-direction: column;
@@ -92,11 +92,11 @@
   padding-left: 0.25rem;
 }
 
-/* Estilo dos Dropdowns (Select) */
+/* ===== ESTILO DOS DROPDOWNS (SELECT) ===== */
 .filter-group select {
   padding: 0.75rem 1rem;
-  background-color: #1f2937; /* Cor do botão de gênero */
-  border: 1px solid #2d3748; /* Borda do search input */
+  background-color: #1f2937; 
+  border: 1px solid #2d3748; 
   border-radius: 0.5rem;
   color: white;
   font-size: 1rem;
@@ -104,7 +104,7 @@
   outline: none;
   cursor: pointer;
   transition: all 0.2s;
-  -webkit-appearance: none; /* Remove seta padrão */
+  -webkit-appearance: none; 
   -moz-appearance: none;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
@@ -116,7 +116,7 @@
   border-color: #88b7ff;
 }
 
-/* Estilo do Input de Busca */
+/* ===== ESTILO DO INPUT DE BUSCA (TEXTO) ===== */
 .search-input-wrapper {
   position: relative;
 }
@@ -134,7 +134,7 @@
   background: #1f2937;
   border: 1px solid #2d3748;
   border-radius: 0.5rem;
-  padding: 0.75rem 1rem 0.75rem 2.75rem; /* Espaço para o ícone */
+  padding: 0.75rem 1rem 0.75rem 2.75rem; 
   font-size: 1rem;
   color: white;
   outline: none;
@@ -145,37 +145,36 @@
   border-color: #88b7ff;
 }
 
-/* --- Responsividade --- */
+/* ===== RESPONSIVIDADE (TABLET/MOBILE) ===== */
 @media (max-width: 900px) {
   .filter-grid {
-    grid-template-columns: 1fr; /* Empilha os filtros */
+    grid-template-columns: 1fr; 
   }
 
   .filter-panel-header {
-    flex-direction: column; /* Título acima dos botões */
-    align-items: flex-start; /* Alinha tudo à esquerda */
+    flex-direction: column; 
+    align-items: flex-start; 
     gap: 1.5rem;
   }
 
   .filter-panel-actions {
     width: 100%;
-    /* Espaça os botões em telas pequenas */
-    justify-content: space-between;
+    justify-content: space-between; 
   }
 }
 
+/* ===== RESPONSIVIDADE (MOBILE PEQUENO) ===== */
 @media (max-width: 480px) {
   .filter-panel-container {
     margin: 1rem auto;
     padding: 1.5rem;
-    border-radius: 0;
+    border-radius: 0; 
   }
   
   .filter-panel-title {
     font-size: 1.75rem;
   }
 
-  /* Faz os botões ocuparem 50% cada */
   .filter-btn {
     flex: 1;
     justify-content: center;
