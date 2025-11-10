@@ -8,11 +8,19 @@
 
 /* ===== TÍTULO DA SEÇÃO ===== */
 .genres-title {
+  display: flex; 
+  align-items: center;
+  gap: 0.75rem; 
   font-size: 1.875rem;
   font-weight: 700;
   color: white;
   margin: 0 0 2rem 0;
 }
+
+.genres-title svg {
+  color: #88b7ff;
+}
+
 
 /* ===== CONTAINER DE BOTÕES (GÊNEROS) ===== */
 .genres-container {

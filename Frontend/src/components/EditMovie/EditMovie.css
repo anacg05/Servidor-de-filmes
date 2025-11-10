@@ -146,7 +146,7 @@
 }
 
 /* POSTER (MINIATURA) */
-.movie-poster {
+.movie-item .movie-poster {
   width: 60px;
   height: 90px;
   border-radius: 6px;
@@ -158,24 +158,24 @@
   justify-content: center;
 }
 
-.movie-poster img {
+.movie-item .movie-poster img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.no-poster {
+.movie-item .no-poster {
   font-size: 2rem;
   color: #666;
 }
 
 /* INFORMAÇÕES (TÍTULO, ANO, TAG) */
-.movie-info {
+.movie-item .movie-info {
   flex: 1;
   min-width: 0; 
 }
 
-.movie-info h3 {
+.movie-item .movie-info h3 {
   font-size: 1rem;
   color: #ffffff;
   margin: 0 0 0.25rem 0;
@@ -184,13 +184,13 @@
   text-overflow: ellipsis; 
 }
 
-.movie-info p {
+.movie-item .movie-info p {
   font-size: 0.875rem;
   color: #a0a0a0;
   margin: 0 0 0.5rem 0;
 }
 
-.genre {
+.movie-item .genre {
   display: inline-block;
   font-size: 0.75rem;
   padding: 0.25rem 0.5rem;

@@ -1,42 +1,99 @@
-/* ===== CONTAINER PRINCIPAL DO PAINEL DE FILTRO ===== */
-.filter-panel-container {
+/* ===== CONTAINER PRINCIPAL DA BARRA DE FILTRO ===== */
+.filter-bar-container {
   max-width: 1280px;
-  margin: 2rem auto;
-  padding: 2rem 2.5rem;
-  background: #111827; 
-  border: 1px solid rgba(75, 85, 99, 0.3); 
-  border-radius: 12px;
-}
-
-/* ===== CABEÇALHO DO PAINEL (TÍTULO + BOTÕES) ===== */
-.filter-panel-header {
+  margin: 0 auto; 
+  padding: 1.5rem 1.5rem;
+  background: #111827;
+  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
-  padding-bottom: 1.5rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
+  gap: 1.5rem;
+  animation: slideDownFilter 0.3s ease-out;
 }
 
-/* ===== TÍTULO (GRADIENTE) ===== */
-.filter-panel-title {
-  font-size: 2.25rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #ffffff, #a5c9ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+@keyframes slideDownFilter {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+/* ===== GRID PARA OS FILTROS (GÊNERO, ANO) ===== */
+.filter-bar-grid {
+  display: flex; 
+  gap: 1.5rem;
+  flex: 1; 
+  min-width: 300px; 
+}
+
+/* GRUPO DE FILTRO (LABEL + INPUT) */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.filter-group label {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding-left: 0.25rem;
+}
+
+/* ESTILO DOS DROPDOWNS (SELECT) E INPUT DE ANO */
+.filter-group select,
+.year-input {
+  padding: 0.75rem 1rem;
+  background-color: #1f2937; 
+  border: 1px solid #2d3748; 
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.filter-group select {
+  cursor: pointer;
+  -webkit-appearance: none; 
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+.filter-group select:focus,
+.year-input:focus {
+  border-color: #88b7ff;
+}
+
+.year-input::-webkit-outer-spin-button,
+.year-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
   margin: 0;
 }
+.year-input {
+  -moz-appearance: textfield;
+}
 
-/* ===== CONTAINER DOS BOTÕES DE AÇÃO (VOLTAR, LIMPAR) ===== */
-.filter-panel-actions {
+
+/* ===== CONTAINER DOS BOTÕES DE AÇÃO (LIMPAR, FECHAR) ===== */
+.filter-bar-actions {
   display: flex;
   gap: 1rem;
 }
 
-/* ===== ESTILO BASE DOS BOTÕES DE AÇÃO ===== */
+/* ESTILO BASE DOS BOTÕES DE AÇÃO */
 .filter-btn {
   display: flex;
   align-items: center;
@@ -51,16 +108,7 @@
   border: none;
 }
 
-/* ===== BOTÃO DE VOLTAR (PRIMÁRIO) ===== */
-.filter-btn.btn-back {
-  background: #88b7ff;
-  color: black;
-}
-.filter-btn.btn-back:hover {
-  background: #74a9fa;
-}
-
-/* ===== BOTÃO DE LIMPAR (SECUNDÁRIO/GHOST) ===== */
+/* BOTÃO DE LIMPAR (SECUNDÁRIO/GHOST) */
 .filter-btn.btn-clear {
   background: transparent;
   color: #9ca3af;
@@ -71,112 +119,21 @@
   color: white;
 }
 
-/* ===== GRID PARA OS FILTROS (BUSCA, GÊNERO, ANO) ===== */
-.filter-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr; 
-  gap: 1.5rem;
+/* BOTÃO DE FECHAR (PRIMÁRIO) */
+.filter-btn.btn-close {
+  background: #88b7ff;
+  color: black;
+}
+.filter-btn.btn-close:hover {
+  background: #74a9fa;
 }
 
-/* ===== GRUPO DE FILTRO (LABEL + INPUT) ===== */
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
 
-.filter-group label {
-  color: #9ca3af;
-  font-size: 0.875rem;
-  font-weight: 500;
-  padding-left: 0.25rem;
-}
 
-/* ===== ESTILO DOS DROPDOWNS (SELECT) ===== */
-.filter-group select {
-  padding: 0.75rem 1rem;
-  background-color: #1f2937; 
-  border: 1px solid #2d3748; 
-  border-radius: 0.5rem;
-  color: white;
-  font-size: 1rem;
-  font-family: inherit;
-  outline: none;
-  cursor: pointer;
-  transition: all 0.2s;
-  -webkit-appearance: none; 
-  -moz-appearance: none;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-}
-
-.filter-group select:focus {
-  border-color: #88b7ff;
-}
-
-/* ===== ESTILO DO INPUT DE BUSCA (TEXTO) ===== */
-.search-input-wrapper {
-  position: relative;
-}
-
-.search-filter-icon {
-  position: absolute;
-  left: 0.875rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #9ca3af;
-}
-
-.filter-group input[type="text"] {
-  width: 100%;
-  background: #1f2937;
-  border: 1px solid #2d3748;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem 0.75rem 2.75rem; 
-  font-size: 1rem;
-  color: white;
-  outline: none;
-  transition: all 0.2s;
-}
-
-.filter-group input[type="text"]:focus {
-  border-color: #88b7ff;
-}
-
-/* ===== RESPONSIVIDADE (TABLET/MOBILE) ===== */
+/* ===== RESPONSIVIDADE (MOBILE) ===== */
 @media (max-width: 900px) {
-  .filter-grid {
-    grid-template-columns: 1fr; 
-  }
-
-  .filter-panel-header {
-    flex-direction: column; 
-    align-items: flex-start; 
-    gap: 1.5rem;
-  }
-
-  .filter-panel-actions {
-    width: 100%;
-    justify-content: space-between; 
-  }
-}
-
-/* ===== RESPONSIVIDADE (MOBILE PEQUENO) ===== */
-@media (max-width: 480px) {
-  .filter-panel-container {
-    margin: 1rem auto;
-    padding: 1.5rem;
-    border-radius: 0; 
-  }
-  
-  .filter-panel-title {
-    font-size: 1.75rem;
-  }
-
-  .filter-btn {
-    flex: 1;
-    justify-content: center;
+  .filter-bar-grid {
+    flex-direction: column;
+    min-width: 0;
   }
 }

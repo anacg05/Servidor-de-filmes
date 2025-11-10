@@ -1,8 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom"; 
 import "./MoviesCarousel.css";
-// ⭐ 1. Importar o ícone 'Play'
-import { Play } from "lucide-react";
+import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 
 function MoviesCarousel({ title, movies, seeAllLink }) {
   const carouselRef = useRef(null);
@@ -21,23 +20,17 @@ function MoviesCarousel({ title, movies, seeAllLink }) {
 
   return (
     <section className="featured-section">
-      {/* ... (cabeçalho da seção não muda) ... */}
       <div className="section-header">
         <div className="section-title-wrapper">
-          
-          {/* ⭐ 2. Substituímos o SVG do gráfico pelo ícone 'Play' */}
           <Play className="section-icon" />
-
           <h2 className="section-title">{title}</h2>
         </div>
-
-        
       </div>
 
       {/* ===== CARROSSEL ===== */}
       <div className="carousel-container">
         <button className="arrow-btn left" onClick={scrollLeft}>
-          ❮
+          <ChevronLeft size={40} />
         </button>
 
         <div className="movies-grid" ref={carouselRef}>
@@ -89,7 +82,7 @@ function MoviesCarousel({ title, movies, seeAllLink }) {
         </div>
 
         <button className="arrow-btn right" onClick={scrollRight}>
-          ❯
+          <ChevronRight size={40} />
         </button>
       </div>
     </section>

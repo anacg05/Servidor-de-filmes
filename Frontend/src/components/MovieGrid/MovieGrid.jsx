@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './MovieGrid.css';
-import '../MoviesCarousel/MoviesCarousel.css'; // Reutiliza o CSS do movie-card
+// ⭐ MUDANÇA: Removemos a importação do CSS do carrossel
+// import '../MoviesCarousel/MoviesCarousel.css'; 
 
 function MovieGrid({ movies }) {
-  // MUDANÇA AQUI: Corrigindo os nomes das propriedades
+  // (Função getMovieId permanece a mesma)
   const getMovieId = (movie) => {
-    // Use 'id_filme' (do DB) em vez de 'id'
-    // Use 'titulo' (do DB) em vez de 'title'
     return movie.id_filme || movie.titulo.toLowerCase().replace(/ /g, '-');
   };
 
@@ -24,15 +23,14 @@ function MovieGrid({ movies }) {
     <div className="movie-grid-container">
       {movies.map((movie) => (
         <Link
-          // MUDANÇA AQUI: 'movie.id_filme' e 'movie.titulo'
           key={movie.id_filme || movie.titulo}
           to={`/filme/${getMovieId(movie)}`}
           state={{ movie: movie }}
-          className="movie-card" // Reutiliza o card do carrossel
+          // ⭐ MUDANÇA: Classe renomeada de 'movie-card' para 'grid-card'
+          className="grid-card" 
         >
           <div className="movie-poster">
             {movie.poster ? (
-              // MUDANÇA AQUI: 'movie.titulo'
               <img src={movie.poster} alt={movie.titulo} />
             ) : (
               <div
@@ -43,11 +41,9 @@ function MovieGrid({ movies }) {
             <div className="poster-overlay"></div>
           </div>
 
-          {/* MUDANÇA AQUI: 'movie.titulo' */}
           <h3 className="movie-title">{movie.titulo}</h3>
 
           <div className="movie-info">
-            {/* MUDANÇA AQUI: 'movie.ano' */}
             <span className="movie-year">{movie.ano}</span>
             <div className="movie-rating">
               <svg
@@ -57,7 +53,6 @@ function MovieGrid({ movies }) {
               >
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
               </svg>
-              {/* 'movie.rating' já estava correto */}
               <span className="rating-value">{movie.rating}</span>
             </div>
           </div>

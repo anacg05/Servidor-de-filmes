@@ -9,16 +9,17 @@ export default function AddMovie() {
     title: '',
     year: '',
     rating: '', 
-    // ⭐ MUDANÇA: 'genre' (string) virou 'genres' (array)
     genres: [], 
     director: '', 
-    actor: '',
+    actor1: '', 
+    actor2: '',
+    actor3: '',
     poster: '',
     synopsis: '',
     id_linguagem: '', 
+    duration: '', // ⭐ NOVO CAMPO DE ESTADO
   });
 
-  // ⭐ MUDANÇA: Renomeado para 'allGenres' para evitar confusão
   const [allGenres, setAllGenres] = useState([]);
   const [linguagens, setLinguagens] = useState([]);
   const [message, setMessage] = useState({ type: '', text: '' });
@@ -32,11 +33,8 @@ export default function AddMovie() {
           getGeneros(),
           getLinguagens()
         ]);
-        
-        // ⭐ MUDANÇA: Seta 'allGenres'
         setAllGenres(generosRes.data);
         setLinguagens(linguagensRes.data);
-
       } catch (error) {
         console.error("Erro ao buscar filtros", error);
         showMessage('error', 'Erro ao carregar listas de filtros.');
@@ -47,7 +45,7 @@ export default function AddMovie() {
     fetchFilters();
   }, []);
 
-  // Handler normal para inputs de texto, ano, etc.
+  // Handler normal para inputs
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -55,25 +53,19 @@ export default function AddMovie() {
     });
   };
 
-  // ⭐ NOVO HANDLER: Específico para os checkboxes de gênero
+  // Handler para os checkboxes de gênero
   const handleGenreChange = (e) => {
     const { value, checked } = e.target;
-    
     setFormData(prevData => {
-      // Copia o array de gêneros selecionados
       const newGenres = [...prevData.genres];
-
       if (checked) {
-        // Adiciona o gênero se o checkbox foi MARCADO
         newGenres.push(value);
       } else {
-        // Remove o gênero se o checkbox foi DESMARCADO
         const index = newGenres.indexOf(value);
         if (index > -1) {
           newGenres.splice(index, 1);
         }
       }
-      // Retorna o novo estado do formulário
       return { ...prevData, genres: newGenres };
     });
   };
@@ -82,8 +74,11 @@ export default function AddMovie() {
   const resetForm = () => {
     setFormData({
       title: '', year: '', rating: '', 
-      genres: [], // ⭐ MUDANÇA
-      director: '', actor: '', poster: '', synopsis: '', id_linguagem: ''
+      genres: [], 
+      director: '', 
+      actor1: '', actor2: '', actor3: '', 
+      poster: '', synopsis: '', id_linguagem: '',
+      duration: '', // ⭐ LIMPAR O CAMPO
     });
   };
 
@@ -95,7 +90,7 @@ export default function AddMovie() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ⭐ MUDANÇA: Validação agora checa 'formData.genres.length'
+    // Validação
     const { title, year, genres, id_linguagem } = formData;
     if (!title || !year || !genres.length || !id_linguagem) {
       showMessage('error', 'Por favor, preencha todos os campos obrigatórios (*).');
@@ -108,36 +103,41 @@ export default function AddMovie() {
       poster: formData.poster || '',
       rating: parseFloat(formData.rating) || 0,
       synopsis: formData.synopsis || 'Sem sinopse disponível',
-      
-      // ⭐ MUDANÇA: Envia a lista de nomes de gêneros
       generos_nomes: formData.genres, 
-      
-      diretor_nome: formData.director || 'Não informado',
-      ator_nome: formData.actor || 'Não informado', 
-      id_linguagem: parseInt(formData.id_linguagem) 
+      diretor_nome: formData.director || '', 
+      id_linguagem: parseInt(formData.id_linguagem),
+      ator_nome1: formData.actor1 || '',
+      ator_nome2: formData.actor2 || '',
+      ator_nome3: formData.actor3 || '',
+      tempo_duracao: formData.duration || null, // ⭐ ENVIAR O CAMPO
     };
 
-
     try {
-      const response = await createFilme(newMovieData);
-      showMessage('success', `Filme "${response.data.titulo}" adicionado com sucesso!`);
+      // (Lógica de simulação de envio)
+      showMessage('success', 'Solicitação de cadastro foi enviada ao administrador!');
       resetForm();
     
     } catch (error) {
-      console.error("Erro ao adicionar filme:", error.response?.data?.error || error.message);
-      showMessage('error', `Erro ao adicionar o filme: ${error.response?.data?.error || 'Tente novamente.'}`);
+      console.error("Erro ao enviar solicitação:", error.message);
+      showMessage('error', `Erro ao enviar solicitação.`);
     }
   };
 
   const handleCancel = () => {
-    console.log('Cancelando...');
-    resetForm();
+    const temCerteza = window.confirm(
+      "Tem certeza que quer cancelar? Todos os dados preenchidos serão perdidos."
+    );
+    if (temCerteza) {
+      console.log('Cancelando...');
+      resetForm();
+    }
   };
 
   return (
     <>
       <Header />
       <div className="add-movie-container">
+        {/* ... (cabeçalho da página e mensagens) ... */}
         <div className="page-header">
           <h1>Adicionar Novo Filme</h1>
           <p>Preencha as informações do filme para adicionar à sua coleção</p>
@@ -151,43 +151,36 @@ export default function AddMovie() {
 
         <div className="form-card">
           <form id="add-movie-form" onSubmit={handleSubmit}>
+            {/* Título */}
             <div className="form-group">
               <label htmlFor="title">Título *</label>
-              <input
-                type="text" id="title" name="title"
-                placeholder="Ex: Oppenheimer"
-                value={formData.title} onChange={handleChange} required
-              />
+              <input type="text" id="title" name="title" placeholder="Ex: Oppenheimer" value={formData.title} onChange={handleChange} required />
             </div>
 
-            <div className="form-row">
+            {/* ⭐ MUDANÇA: Ano, Duração e Rating */}
+            <div className="form-row" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}> {/* 3 colunas */}
               <div className="form-group">
                 <label htmlFor="year">Ano *</label>
-                <input
-                  type="number" id="year" name="year"
-                  placeholder="Ex: 2023" min="1888" max="2099"
-                  value={formData.year} onChange={handleChange} required
-                />
+                <input type="number" id="year" name="year" placeholder="Ex: 2023" min="1888" max="2099" value={formData.year} onChange={handleChange} required />
               </div>
+              
+              {/* ⭐ NOVO CAMPO DE DURAÇÃO */}
+              <div className="form-group">
+                <label htmlFor="duration">Duração</label>
+                <input type="time" id="duration" name="duration" value={formData.duration} onChange={handleChange} step="1" />
+              </div>
+
               <div className="form-group">
                 <label htmlFor="rating">Avaliação (0-10)</label>
-                <input
-                  type="number" id="rating" name="rating"
-                  placeholder="Ex: 8.5" min="0" max="10" step="0.1"
-                  value={formData.rating} onChange={handleChange}
-                />
+                <input type="number" id="rating" name="rating" placeholder="Ex: 8.5" min="0" max="10" step="0.1" value={formData.rating} onChange={handleChange} />
               </div>
             </div>
 
+            {/* Linguagem e Diretor */}
             <div className="form-row">
-              {/* ⭐ MUDANÇA: Dropdown de Linguagem */}
               <div className="form-group">
                 <label htmlFor="id_linguagem">Linguagem *</label>
-                <select
-                  id="id_linguagem" name="id_linguagem"
-                  value={formData.id_linguagem} onChange={handleChange} required
-                  disabled={loadingFilters}
-                >
+                <select id="id_linguagem" name="id_linguagem" value={formData.id_linguagem} onChange={handleChange} required disabled={loadingFilters}>
                   <option value="">{loadingFilters ? 'Carregando...' : 'Selecione a linguagem'}</option>
                   {linguagens.map(l => (
                     <option key={l.id_linguagem} value={l.id_linguagem}>
@@ -196,34 +189,20 @@ export default function AddMovie() {
                   ))}
                 </select>
               </div>
-
-               {/* Campo de Diretor (movido para a fileira) */}
               <div className="form-group">
                 <label htmlFor="director">Diretor (Nome)</label>
-                <input
-                  type="text" id="director" name="director"
-                  placeholder="Ex: Christopher Nolan"
-                  value={formData.director} onChange={handleChange}
-                />
+                <input type="text" id="director" name="director" placeholder="Ex: Christopher Nolan" value={formData.director} onChange={handleChange} />
               </div>
             </div>
             
-            {/* ⭐ MUDANÇA: Gêneros agora são Checkboxes */}
+            {/* Gêneros (Checkboxes) */}
             <div className="form-group">
               <label>Gêneros *</label>
               <div className="checkbox-group-container" disabled={loadingFilters}>
                 {loadingFilters ? <p>Carregando gêneros...</p> : (
                   allGenres.map(g => (
                     <div key={g.id_genero} className="checkbox-item">
-                      <input
-                        type="checkbox"
-                        id={`genre-${g.id_genero}`}
-                        name="genres"
-                        value={g.genero}
-                        // Verifica se o gênero (ex: "Ação") está no array formData.genres
-                        checked={formData.genres.includes(g.genero)}
-                        onChange={handleGenreChange}
-                      />
+                      <input type="checkbox" id={`genre-${g.id_genero}`} name="genres" value={g.genero} checked={formData.genres.includes(g.genero)} onChange={handleGenreChange} />
                       <label htmlFor={`genre-${g.id_genero}`}>{g.genero}</label>
                     </div>
                   ))
@@ -231,39 +210,35 @@ export default function AddMovie() {
               </div>
             </div>
 
+            {/* 3 CAMPOS PARA ATORES */}
             <div className="form-group">
-              <label htmlFor="actor">Ator Principal (Nome)</label>
-              <input
-                type="text" id="actor" name="actor"
-                placeholder="Ex: Cillian Murphy"
-                value={formData.actor} onChange={handleChange}
-              />
+              <label>Atores (Até 3)</label>
+              <div className="form-row" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}> {/* 3 colunas */}
+                <input type="text" id="actor1" name="actor1" placeholder="Ator 1 (Ex: Cillian Murphy)" value={formData.actor1} onChange={handleChange} />
+                <input type="text" id="actor2" name="actor2" placeholder="Ator 2 (Opcional)" value={formData.actor2} onChange={handleChange} />
+                <input type="text" id="actor3" name="actor3" placeholder="Ator 3 (Opcional)" value={formData.actor3} onChange={handleChange} />
+              </div>
             </div>
 
+            {/* URL da Capa */}
             <div className="form-group">
               <label htmlFor="poster">URL da Capa</label>
-              <input
-                type="url" id="poster" name="poster"
-                placeholder="https://exemplo.com/poster.jpg"
-                value={formData.poster} onChange={handleChange}
-              />
+              <input type="url" id="poster" name="poster" placeholder="https://exemplo.com/poster.jpg" value={formData.poster} onChange={handleChange} />
             </div>
 
+            {/* Sinopse */}
             <div className="form-group">
               <label htmlFor="synopsis">Sinopse</label>
-              <textarea
-                id="synopsis" name="synopsis"
-                placeholder="Escreva uma breve descrição do filme..."
-                value={formData.synopsis} onChange={handleChange}
-              ></textarea>
+              <textarea id="synopsis" name="synopsis" placeholder="Escreva uma breve descrição do filme..." value={formData.synopsis} onChange={handleChange}></textarea>
             </div>
 
+            {/* Botões */}
             <div className="form-actions">
               <button type="button" className=" btns btn-secondary" onClick={handleCancel}>
                 Cancelar
               </button>
               <button type="submit" className="btns btn-primary">
-                Adicionar Filme
+                Enviar Solicitação
               </button>
             </div>
           </form>
