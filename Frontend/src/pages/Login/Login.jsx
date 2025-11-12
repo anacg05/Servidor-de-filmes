@@ -1,35 +1,71 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react'; // Importar useEffect
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 import Icon from '../../assets/icon_64.png';
 import './Login.css';
+import { useAuth } from '../../auth/AuthContext';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  
+  const navigate = useNavigate();
+  // Obter o 'user' (além do 'login')
+  const { user, login } = useAuth();
 
-  const handleSubmit = (e) => {
+  /*
+    Efeito de Redirecionamento:
+    Verifica se o utilizador já está logado ao carregar a página.
+  */
+  useEffect(() => {
+    if (user) {
+      // Se estiver logado, redireciona para o dashboard correto
+      const homePath = user.type === 'admin' ? '/admin' : '/home';
+      navigate(homePath, { replace: true });
+    }
+  }, [user, navigate]);
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    const USER = 'admin@cinegriz.com';
-    const PASS = '123456';
-
-    setTimeout(() => {
-      if (email === USER && password === PASS) {
-        window.location.href = '/';
-      } else {
-        setError('Email ou senha incorretos');
+    try {
+      const userType = login(email, password); 
+      // O redirecionamento explícito após o login é mantido
+      if (userType === 'admin') {
+        navigate('/admin');
+      } else if (userType === 'user') {
+        navigate('/home');
       }
+    } catch (err) {
+      setError(err.message);
       setLoading(false);
-    }, 1000);
+    }
   };
 
+  /*
+    Renderização de Feedback:
+    Se o 'user' existir (estiver a redirecionar), mostra "Carregando...".
+  */
+  if (user) {
+    return (
+      <div className="login-container">
+        <p style={{color: 'white', fontSize: '1.2rem'}}>Já está logado. A redirecionar...</p>
+      </div>
+    );
+  }
+
+  /*
+    Renderização Padrão:
+    Se não houver utilizador, mostra o formulário de login.
+  */
   return (
     <div className="login-container">
-
+      
       <div className="login-card">
         <div className="login-header">
           <div className="logo">
@@ -39,7 +75,7 @@ export default function Login() {
         </div>
 
         <div className="login-content">
-          <h1 className="login-title">Bem-vindo de volta</h1>
+          <h1 className="login-title">Bem-vindo</h1>
           <p className="login-subtitle">Faça login para continuar</p>
 
           <form onSubmit={handleSubmit} className="login-form">
@@ -52,7 +88,7 @@ export default function Login() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="seu@email.com"
+                placeholder="admin@grizflix.com"
                 required
                 disabled={loading}
               />
@@ -72,7 +108,7 @@ export default function Login() {
             </div>
 
             <div className="form-footer">
-              <a href="/recuperar-senha" className="forgot-password">
+              <a href="#" className="forgot-password">
                 Esqueceu a senha?
               </a>
             </div>
@@ -105,8 +141,9 @@ export default function Login() {
           </div>
 
           <div className="signup-link">
-            Não tem uma conta? <Link to="/cadastro">Cadastre-se</Link>
+            Não tem uma conta? <Link to="#">Cadastre-se</Link>
           </div>
+
         </div>
       </div>
     </div>

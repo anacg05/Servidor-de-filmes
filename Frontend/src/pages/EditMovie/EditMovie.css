@@ -1,0 +1,217 @@
+
+/* ===== RESET BÁSICO ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== CONTAINER DA PÁGINA ===== */
+.edit-movie-container {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+/* ===== CABEÇALHO DA PÁGINA (TÍTULO E SUBTÍTULO) ===== */
+.page-header {
+    margin-bottom: 2.5rem;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #ffffff, #a5c9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-header p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+}
+
+/* ===== CARD DO FORMULÁRIO ===== */
+.form-card {
+    background-color: #0f1629;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2.5rem;
+}
+
+/* ===== GRUPO DE FORMULÁRIO (LABEL + INPUT) ===== */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+/* ===== ESTILO DOS INPUTS, TEXTAREA E SELECT ===== */
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background-color: #1a2238;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #4a9eff;
+    background-color: #1f2b45;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ===== LINHA DO FORMULÁRIO (PARA GRID DE 2 COLUNAS) ===== */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+/* ===== AÇÕES DO FORMULÁRIO (BOTÕES) ===== */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: flex-end; 
+}
+
+/* ===== ESTILO GERAL DOS BOTÕES ===== */
+.btns {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ===== BOTÃO PRIMÁRIO (ADICIONAR) ===== */
+.btn-primary {
+    background: #88b7ff;
+    color: #030712;
+    box-shadow: 0 10px 30px rgba(38, 117, 220, 0.3);
+    border: 2px solid #88b7ff;
+}
+
+.btn-primary:hover {
+    background: #74a9fa;
+}
+
+/* ===== BOTÃO SECUNDÁRIO (CANCELAR) ===== */
+.btn-secondary {
+    background: #2d3748;
+    color: white;
+    box-shadow: none;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background: #4a5568;
+}
+
+/* ===== MENSAGENS (Sucesso/Erro) ===== */
+.message {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    display: none; /* Escondido por padrão */
+}
+.message.show {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+.success-message {
+    background-color: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    color: #4ade80; /* Cor de sucesso */
+}
+.error-message {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    .form-card {
+        padding: 1.5rem;
+    }
+    .page-header h1 {
+        font-size: 2rem;
+    }
+}
+
+/* ===== ESTILOS PARA OS GÊNEROS (CHECKBOX) ===== */
+.checkbox-group-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 0.75rem; 
+    background-color: #1a2238; 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+}
+.checkbox-item input[type="checkbox"] {
+    display: none;
+}
+.checkbox-item label {
+    display: block;
+    padding: 0.625rem 1.25rem;
+    background: #1f2937; 
+    border-radius: 9999px; 
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent; 
+    margin: 0; 
+}
+.checkbox-item label:hover {
+    background: #374151; 
+}
+.checkbox-item input[type="checkbox"]:checked + label {
+    background: #88b7ff; 
+    color: #030712; 
+    font-weight: 600;
+    border-color: #88b7ff;
+}

@@ -7,7 +7,7 @@ try:
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",        #  usuário
-        password="root",     #  senha
+        password="senai",     #  senha
         database="webserver_filmes_anacg"
     )
     print("✅ Conexão com o MySQL estabelecida com sucesso!")

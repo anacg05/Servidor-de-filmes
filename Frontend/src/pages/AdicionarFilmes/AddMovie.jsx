@@ -237,7 +237,7 @@ export default function AddMovie() {
                 Cancelar
               </button>
               <button type="submit" className="btns btn-primary">
-                Enviar Solicitação
+                Enviar Cadastro
               </button>
             </div>
           </form>

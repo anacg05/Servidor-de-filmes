@@ -157,7 +157,7 @@ def main():
     port = 3001
     server_address = ('', port)
     httpd = HTTPServer(server_address, MyApiHandler)
-    print(f"✅ Servidor API (Python Puro) rodando em http://localhost:{port}")
+    print(f"✅ Servidor API rodando em http://localhost:{port}")
     httpd.serve_forever()
 
 if __name__ == "__main__":

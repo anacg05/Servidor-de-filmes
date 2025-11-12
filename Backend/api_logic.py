@@ -2,8 +2,6 @@ from urllib.parse import unquote
 # Importa as funções de banco de dados do arquivo db.py
 from db import fetch_all, fetch_one, execute_query
 
-# (get_filmes e get_filme_by_id permanecem os mesmos)
-# ...
 def get_filmes(params):
     busca = params.get("busca", [None])[0]
     genero = params.get("genero", [None])[0]
@@ -107,7 +105,6 @@ def create_filme(data):
         if existing_film:
             return {"error": f"O filme '{titulo}' ({ano}) já está cadastrado."}, 409
         
-        # ⭐ QUERY ATUALIZADA
         query_filme = "INSERT INTO Filme (titulo, ano, poster, rating, synopsis, id_linguagem, tempo_duracao) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         id_filme = execute_query(query_filme, (titulo, ano, poster, rating, synopsis, id_linguagem, tempo_duracao))
         
@@ -135,7 +132,6 @@ def create_filme(data):
     except Exception as e:
         return {"error": str(e)}, 500
 
-# (update_filme e delete_filme permanecem os mesmos)
 def update_filme(filme_id, data):
     # ...
     return data
