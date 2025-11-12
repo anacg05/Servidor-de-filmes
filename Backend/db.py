@@ -6,8 +6,8 @@ import decimal
 try:
     mydb = mysql.connector.connect(
         host="localhost",
-        user="root",        # Seu usuário
-        password="senai",     # Sua senha
+        user="root",        #  usuário
+        password="root",     #  senha
         database="webserver_filmes_anacg"
     )
     print("✅ Conexão com o MySQL estabelecida com sucesso!")

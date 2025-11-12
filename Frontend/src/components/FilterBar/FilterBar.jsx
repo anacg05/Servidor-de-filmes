@@ -2,10 +2,8 @@ import React from 'react';
 import './FilterBar.css';
 import { XCircle, X } from 'lucide-react';
 
-// ⭐ 1. Recebe 'searchParams' e 'setSearchParams' em vez de 'filters' e 'setFilters'
 function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, onClose }) {
   
-  // ⭐ 2. Lógica para atualizar a URL quando um filtro muda
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     
@@ -24,7 +22,6 @@ function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, 
     setSearchParams(newParams);
   };
 
-  // ⭐ 3. Os inputs agora leem seus valores direto da URL
   const currentGenre = searchParams.get('genre') || '';
   const currentYear = searchParams.get('ano') || '';
 
@@ -66,7 +63,7 @@ function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, 
       </div>
 
       <div className="filter-bar-actions">
-        {/* handleClearFilters agora limpa a URL */}
+        {/* handleClearFilters  limpa a URL */}
         <button className="filter-btn btn-clear" onClick={handleClearFilters}>
           <XCircle size={18} />
           Limpar

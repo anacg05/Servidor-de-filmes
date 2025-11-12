@@ -109,17 +109,18 @@ export default function AddMovie() {
       ator_nome1: formData.actor1 || '',
       ator_nome2: formData.actor2 || '',
       ator_nome3: formData.actor3 || '',
-      tempo_duracao: formData.duration || null, // ⭐ ENVIAR O CAMPO
+      tempo_duracao: formData.duration || null,
     };
 
     try {
-      // (Lógica de simulação de envio)
-      showMessage('success', 'Solicitação de cadastro foi enviada ao administrador!');
+      const response = await createFilme(newMovieData);
+      
+      showMessage('success', `Filme "${response.data.titulo}" adicionado com sucesso!`);
       resetForm();
     
     } catch (error) {
-      console.error("Erro ao enviar solicitação:", error.message);
-      showMessage('error', `Erro ao enviar solicitação.`);
+      console.error("Erro ao adicionar filme:", error.response?.data?.error || error.message);
+      showMessage('error', `Erro ao adicionar o filme: ${error.response?.data?.error || 'Tente novamente.'}`);
     }
   };
 
@@ -157,14 +158,12 @@ export default function AddMovie() {
               <input type="text" id="title" name="title" placeholder="Ex: Oppenheimer" value={formData.title} onChange={handleChange} required />
             </div>
 
-            {/* ⭐ MUDANÇA: Ano, Duração e Rating */}
             <div className="form-row" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}> {/* 3 colunas */}
               <div className="form-group">
                 <label htmlFor="year">Ano *</label>
                 <input type="number" id="year" name="year" placeholder="Ex: 2023" min="1888" max="2099" value={formData.year} onChange={handleChange} required />
               </div>
               
-              {/* ⭐ NOVO CAMPO DE DURAÇÃO */}
               <div className="form-group">
                 <label htmlFor="duration">Duração</label>
                 <input type="time" id="duration" name="duration" value={formData.duration} onChange={handleChange} step="1" />
