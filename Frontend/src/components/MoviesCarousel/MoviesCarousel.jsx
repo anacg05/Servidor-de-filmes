@@ -1,17 +1,24 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom"; 
 import "./MoviesCarousel.css";
+// 1. Importar o ícone 'Play' de volta
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 
 function MoviesCarousel({ title, movies, seeAllLink }) {
   const carouselRef = useRef(null);
 
   const scrollLeft = () => {
-    carouselRef.current.scrollBy({ left: -400, behavior: "smooth" });
+    if (carouselRef.current && carouselRef.current.firstElementChild) {
+      const cardWidth = carouselRef.current.firstElementChild.offsetWidth;
+      carouselRef.current.scrollBy({ left: -cardWidth, behavior: "smooth" });
+    }
   };
 
   const scrollRight = () => {
-    carouselRef.current.scrollBy({ left: 400, behavior: "smooth" });
+    if (carouselRef.current && carouselRef.current.firstElementChild) {
+      const cardWidth = carouselRef.current.firstElementChild.offsetWidth;
+      carouselRef.current.scrollBy({ left: cardWidth, behavior: "smooth" });
+    }
   };
 
   const getMovieId = (movie) => {
@@ -20,12 +27,19 @@ function MoviesCarousel({ title, movies, seeAllLink }) {
 
   return (
     <section className="featured-section">
-      <div className="section-header">
-        <div className="section-title-wrapper">
-          <Play className="section-icon" />
-          <h2 className="section-title">{title}</h2>
+      
+      {/*
+        2. MUDANÇA AQUI:
+        O ícone <Play /> foi recolocado DENTRO da verificação 'if (title)'.
+      */}
+      {title && (
+        <div className="section-header">
+          <div className="section-title-wrapper">
+            <Play className="section-icon" />
+            <h2 className="section-title">{title}</h2>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* ===== CARROSSEL ===== */}
       <div className="carousel-container">

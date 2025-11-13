@@ -1,24 +1,22 @@
 /*
-  Container do conteúdo do filtro (agora é o próprio dropdown).
-  Recebe os estilos do dropdown vertical.
+  Container do conteúdo do filtro (o dropdown vertical).
 */
 .filter-bar-content-dropdown {
-  background-color: #1a2238; /* Cor de fundo do dropdown */
+  background-color: #1a2238; 
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
-  min-width: 250px; /* Largura mínima do dropdown */
+  min-width: 250px; 
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  z-index: 60; /* Acima de outros elementos */
-  padding: 1rem; /* Espaçamento interno */
-  display: flex; /* Para os itens internos */
-  flex-direction: column; /* Itens um abaixo do outro */
-  gap: 1rem; /* Espaçamento entre os grupos de filtro */
+  z-index: 60; 
+  padding: 1rem; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1rem; 
 
-  /* Animação */
   animation: fadeInDown 0.2s ease-out; 
 }
 
-/* Animação de entrada (pode ser a mesma do dropdown de perfil) */
+/* Animação de entrada */
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -35,7 +33,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  width: 100%; /* Ocupa toda a largura do dropdown */
+  width: 100%; 
 }
 
 .filter-group label {
@@ -85,19 +83,19 @@
 }
 
 
-/* ===== CONTAINER DOS BOTÕES DE AÇÃO (LIMPAR, FECHAR) ===== */
+/* ===== CONTAINER DOS BOTÕES DE AÇÃO (LIMPAR, FILTRAR) ===== */
 .filter-bar-actions {
   display: flex;
-  flex-direction: column; /* Botões um abaixo do outro */
-  gap: 0.75rem; /* Espaçamento entre os botões */
-  margin-top: 0.5rem; /* Espaçamento superior */
+  flex-direction: column; 
+  gap: 0.75rem; 
+  margin-top: 0.5rem; 
 }
 
 /* ESTILO BASE DOS BOTÕES DE AÇÃO */
 .filter-btn {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centraliza o texto e ícone */
+  justify-content: center; 
   gap: 0.5rem;
   padding: 0.625rem 1rem;
   border-radius: 8px;
@@ -107,7 +105,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   border: none;
-  width: 100%; /* Ocupa toda a largura do dropdown */
+  width: 100%; 
 }
 
 /* BOTÃO DE LIMPAR (SECUNDÁRIO/GHOST) */
@@ -121,23 +119,21 @@
   color: white;
 }
 
-/* BOTÃO DE FECHAR (PRIMÁRIO) */
-.filter-btn.btn-close {
+/* BOTÃO DE FILTRAR (PRIMÁRIO - Antigo .btn-close) */
+.filter-btn.btn-filter {
   background: #88b7ff;
   color: black;
 }
-.filter-btn.btn-close:hover {
+.filter-btn.btn-filter:hover {
   background: #74a9fa;
 }
 
 /* ===== RESPONSIVIDADE (MOBILE) ===== */
-/* Ajustar conforme necessário, mas o layout vertical já é bom para mobile */
 @media (max-width: 900px) {
-  /* No mobile, o dropdown pode ocupar mais largura, ou você pode definir uma largura máxima */
   .filter-bar-content-dropdown {
-    min-width: unset; /* Remove min-width */
-    width: calc(100% - 3rem); /* Ocupa quase toda a largura da tela */
-    right: 1.5rem; /* Ajusta a posição para não sair da tela */
+    min-width: unset; 
+    width: calc(100% - 3rem); 
+    right: 1.5rem; 
     left: 1.5rem;
   }
 }

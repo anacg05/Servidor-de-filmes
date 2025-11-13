@@ -138,6 +138,7 @@
     background: #4a5568;
 }
 
+
 /* ===== MENSAGENS (Sucesso/Erro) ===== */
 .message {
     padding: 1rem;
@@ -151,11 +152,13 @@
     display: block;
     animation: slideDown 0.3s ease;
 }
-.success-message {
-    background-color: rgba(74, 222, 128, 0.1);
-    border: 1px solid rgba(74, 222, 128, 0.3);
-    color: #4ade80; /* Cor de sucesso */
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
+
+
 .error-message {
     background-color: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.3);

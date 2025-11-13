@@ -1,6 +1,6 @@
 /* ===== CONTAINER PRINCIPAL DA PÁGINA ===== */
 .movie-detail-container {
-  max-width: 1400px;
+  max-width: 1400px; 
   margin: 3rem auto;
   padding: 0 2rem; 
   color: #ffffff;
@@ -15,7 +15,17 @@
   position: relative;
 }
 
-/* ===== BOTÃO DE VOLTAR ===== */
+/* ===== CONTAINER PARA OS BOTÕES (Voltar, Editar, Excluir) ===== */
+.detail-actions-container {
+  display: flex;
+  gap: 0.5rem; 
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem; 
+  z-index: 10;
+}
+
+/* Botão de Voltar (Cinza) */
 .detail-back-button {
   display: inline-flex; 
   align-items: center;
@@ -28,16 +38,14 @@
   font-weight: 500;
   text-decoration: none;
   transition: all 0.2s ease;
-  position: absolute;
-  top: 2.5rem;
-  left: 2.5rem;
-  z-index: 10;
+  border: none; 
+  cursor: pointer; 
 }
 .detail-back-button:hover {
   background: #4a5568; 
 }
 
-/*  BOTÃO DE EDITAR */
+/* Botão de Editar (Azul) - Para Utilizador Comum */
 .detail-edit-button {
   display: inline-flex; 
   align-items: center;
@@ -50,13 +58,51 @@
   font-weight: 500;
   text-decoration: none;
   transition: all 0.2s ease;
-  position: absolute;
-  top: 2.5rem;
-  right: 2.5rem; 
-  z-index: 10;
+  border: none;
+  cursor: pointer;
 }
 .detail-edit-button:hover {
   background: #74a9fa; 
+}
+
+/* BOTÃO DE EXCLUIR/RECUSAR (Vermelho) - Para Admin */
+.detail-delete-button {
+  display: inline-flex; 
+  align-items: center;
+  gap: 8px;
+  background: #ef4444; /* Vermelho (Cor de perigo) */
+  color: white; /* Texto branco */
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+.detail-delete-button:hover {
+  background: #dc2626; /* Vermelho mais escuro */
+}
+
+/* BOTÃO DE APROVAR (Verde) - Para Admin */
+.detail-approve-button {
+  display: inline-flex; 
+  align-items: center;
+  gap: 8px;
+  background: #22c55e; /* Verde */
+  color: white; /* Texto branco */
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+.detail-approve-button:hover {
+  background: #16a34a; /* Verde mais escuro */
 }
 
 
@@ -76,19 +122,22 @@
   margin-top: 4rem; 
 }
 
+/* ===== SEÇÃO DO POSTER ===== */
 .detail-poster-section {
   width: 100%;
   flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
 }
+
 .detail-poster-img {
   width: 100%;
-  height: 100%;
+  height: 100%; 
   border-radius: 12px;
-  object-fit: cover;
+  object-fit: cover; 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
+
 .detail-no-poster {
   width: 100%;
   aspect-ratio: 2 / 3;
@@ -101,9 +150,13 @@
   color: #666;
   height: 100%;
 }
+
+/* ===== SEÇÃO DAS INFORMAÇÕES ===== */
 .detail-info-section {
   padding-top: 1rem;
 }
+
+/* TÍTULO DO FILME */
 .detail-title {
   font-size: 2.75rem;
   font-weight: 700;
@@ -114,6 +167,8 @@
   background-clip: text;
   line-height: 1.2;
 }
+
+/* ===== META-DADOS (ÍCONES: RATING, ANO, DURAÇÃO) ===== */
 .detail-meta-icons {
   display: flex;
   flex-wrap: wrap;
@@ -122,6 +177,7 @@
   color: #d1d5db; 
   font-size: 1rem;
 }
+
 .meta-icon-item {
   display: flex;
   align-items: center;
@@ -134,12 +190,15 @@
 .meta-icon-item .icon-gold {
   color: #eab308; 
 }
+
+/* ===== TAGS DE GÊNERO (PÍLULAS) ===== */
 .detail-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 2rem;
 }
+
 .tag-pill {
   background-color: #1f2937; 
   color: #d1d5db;
@@ -148,27 +207,34 @@
   font-size: 0.875rem;
   font-weight: 500;
 }
+
+/* ===== SEÇÕES (SINOPSE, ELENCO, EQUIPE) ===== */
 .detail-section {
   margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid rgba(75, 85, 99, 0.3); 
 }
+
 .detail-section h2 {
   font-size: 1.5rem;
   font-weight: 600;
   color: #ffffff;
   margin-bottom: 1rem;
 }
+
 .detail-synopsis-text {
   font-size: 1rem;
   color: #d1d5db;
   line-height: 1.6;
 }
+
+/* Lista para Elenco e Equipe */
 .detail-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
 }
+
 .list-item {
   display: flex;
   align-items: center;
@@ -186,20 +252,25 @@
   color: #9ca3af; 
   font-weight: 500;
 }
+
+/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 1024px) {
   .detail-layout {
     grid-template-columns: 1fr;
   }
+  
   .detail-poster-section {
     width: 100%;
     max-width: 300px;
     margin: 0 auto;
     height: auto;
   }
+  
   .detail-poster-img {
     height: auto; 
     object-fit: contain;
   }
+
   .detail-info-section {
     padding-top: 0;
     text-align: center;
@@ -208,12 +279,15 @@
     padding-right: 0;
     padding-left: 0;
   }
+  
   .detail-meta-icons {
     justify-content: center;
   }
+  
   .detail-tags {
     justify-content: center;
   }
+  
   .detail-section h2 {
     text-align: left;
   }
@@ -224,6 +298,7 @@
     text-align: left;
   }
 }
+
 @media (max-width: 768px) {
   .movie-detail-container {
     padding: 1rem;
@@ -232,15 +307,15 @@
   .movie-detail-content {
     padding: 1.5rem;
   }
-  .detail-back-button {
+  
+  /* Atualiza o container de ações para mobile */
+  .detail-actions-container {
     position: static;
+    float: right;
     margin-bottom: 1.5rem;
+    gap: 0.5rem;
   }
-  .detail-edit-button {
-    position: static;
-    margin-bottom: 1.5rem;
-    float: right; 
-  }
+
   .detail-layout {
     margin-top: 0;
   }

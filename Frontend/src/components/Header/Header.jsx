@@ -10,7 +10,7 @@ function Header({
   onFilterToggle, 
   isFilterActive = false, 
   isFilterPage = false,
-  filterProps = {}
+  filterProps = {} 
 }) { 
   
   const [searchTerm, setSearchTerm] = useState('');
@@ -19,52 +19,58 @@ function Header({
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const profileButtonRef = useRef(null);
-
-  /* Novo Ref para o botão do filtro (para fechar ao clicar fora) */
   const filterButtonRef = useRef(null);
-  /* Novo Ref para o dropdown do filtro (para fechar ao clicar fora) */
   const filterDropdownRef = useRef(null);
-
 
   useEffect(() => {
     function handleClickOutside(event) {
-      const isClickOnProfileDropdown = dropdownRef.current && dropdownRef.current.contains(event.target);
-      const isClickOnProfileButton = profileButtonRef.current && profileButtonRef.current.contains(event.target);
-      const isClickOnFilterDropdown = filterDropdownRef.current && filterDropdownRef.current.contains(event.target);
-      const isClickOnFilterButton = filterButtonRef.current && filterButtonRef.current.contains(event.target);
+      if (profileButtonRef.current && profileButtonRef.current.contains(event.target)) return;
+      if (filterButtonRef.current && filterButtonRef.current.contains(event.target)) return;
 
-
-      // Fecha dropdown de perfil
-      if (!isClickOnProfileDropdown && !isClickOnProfileButton) {
+      if (isProfileDropdownOpen && 
+          dropdownRef.current && 
+          !dropdownRef.current.contains(event.target)) {
         setIsProfileDropdownOpen(false);
       }
-      // Fecha dropdown de filtro (se não for um clique no próprio filtro ou no botão)
-      if (isFilterPage && !isClickOnFilterDropdown && !isClickOnFilterButton) {
-        onFilterToggle(false); // Assume que onFilterToggle pode receber um estado ou alternar
+      
+      if (isFilterPage && isFilterActive && 
+          filterDropdownRef.current && 
+          !filterDropdownRef.current.contains(event.target)) {
+        onFilterToggle(false); 
       }
     }
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
     };
-  }, [dropdownRef, profileButtonRef, filterDropdownRef, filterButtonRef, isFilterPage, onFilterToggle]);
-
+  }, [isProfileDropdownOpen, isFilterPage, isFilterActive, onFilterToggle]);
 
   const handleLogout = () => {
     logout();
     navigate('/');
   };
 
+  /*
+    Lógica da barra de pesquisa principal
+  */
   const handleSearchSubmit = (e) => {
     e.preventDefault(); 
-    if (searchTerm.trim()) {
-      navigate(`/listarfilmes?busca=${searchTerm.trim()}`);
-      setSearchTerm('');
+    const term = searchTerm.trim();
+    if (!term) return; 
+
+    if (isFilterPage && filterProps.setSearchParams) {
+      // 1. Se estiver na página de filtro, ATUALIZA a URL (preserva filtros)
+      const newParams = new URLSearchParams(filterProps.searchParams);
+      newParams.set('busca', term);
+      filterProps.setSearchParams(newParams);
+    } else {
+      // 2. Se estiver noutra página (Home), NAVEGA
+      navigate(`/listarfilmes?busca=${term}`);
     }
+    setSearchTerm(''); 
   };
 
-  const homePath = user?.type === 'admin' ? '/admin' : '/home';
-
+  const homePath = user?.type === 'admin' ? '/home' : '/home';
 
   return (
     <header className="header">
@@ -109,21 +115,9 @@ function Header({
 
               {isProfileDropdownOpen && (
                 <div ref={dropdownRef} className="profile-dropdown-menu">
-                  <Link to="/profile" className="dropdown-item" onClick={() => setIsProfileDropdownOpen(false)}>
-                    <User size={18} /> Profile
-                  </Link>
-                  <Link to="/notifications" className="dropdown-item" onClick={() => setIsProfileDropdownOpen(false)}>
-                    <Bell size={18} /> Notification
-                  </Link>
-                  <Link to="/settings" className="dropdown-item" onClick={() => setIsProfileDropdownOpen(false)}>
-                    <Settings size={18} /> Settings
-                  </Link>
-                   <Link to="/help" className="dropdown-item" onClick={() => setIsProfileDropdownOpen(false)}>
-                    <HelpCircle size={18} /> Help
-                  </Link>
-                  <div className="dropdown-divider"></div>
+                 
                   <button className="dropdown-item logout-item" onClick={handleLogout}>
-                    <LogOut size={18} /> Logout
+                    <LogOut size={18} /> Sair
                   </button>
                 </div>
               )}
@@ -147,10 +141,9 @@ function Header({
             Todos os Filmes
           </NavLink>
           
-          {/* MUDANÇA AQUI: Wrap o NavLink em um div para posicionamento */}
           <div className="filter-dropdown-wrapper">
             <NavLink 
-              ref={filterButtonRef} /* Atribuir ref ao botão de filtro */
+              ref={filterButtonRef} 
               to="/listarfilmes" 
               state={{ openFilter: true }}
               className={({ isActive }) => 
@@ -159,20 +152,19 @@ function Header({
               onClick={(e) => {
                 if (onFilterToggle) {
                   e.preventDefault(); 
-                  onFilterToggle(!isFilterActive); // Alterna o estado (agora no Header)
+                  onFilterToggle(!isFilterActive); 
                 }
               }}
             >
               Busca por Filtro
             </NavLink>
 
-            {/* Renderiza o FilterBar AQUI se for a página de filtro e o filtro estiver ativo */}
             {isFilterPage && isFilterActive && (
               <div ref={filterDropdownRef} className="filter-dropdown-menu">
                 <FilterBar {...filterProps} />
               </div>
             )}
-          </div> {/* Fim de .filter-dropdown-wrapper */}
+          </div> 
         </nav>
       </div>
     </header>

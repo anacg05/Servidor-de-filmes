@@ -1,39 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import './EditMovie.css'; // Usa o novo CSS (cópia do AddMovie.css)
-import Header from '../../components/Header/Header'; // Atualiza o caminho
-import { getFilmeById, getGeneros, getLinguagens } from '../../services/api';
+import './EditMovie.css';
+import Header from '../../components/Header/Header';
+import { getFilmeById, getGeneros, getLinguagens, submitEditFilme } from '../../services/api';
 
-// (Helper para dividir "Ator A, Ator B" em ["Ator A", "Ator B"])
 const splitToArray = (str) => {
   if (!str) return [];
   return str.split(',').map(item => item.trim());
 };
 
 export default function EditMovie() {
-  const { id } = useParams(); // Pega o ID do filme da URL
-  const navigate = useNavigate(); // Para voltar à página de detalhes
-  
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    title: '', year: '', rating: '', genres: [], director: '', 
+    title: '', year: '', rating: '', genres: [], director: '',
     actor1: '', actor2: '', actor3: '',
     poster: '', synopsis: '', id_linguagem: '', duration: '',
   });
 
-  // Estados para os dropdowns/checkboxes
   const [allGenres, setAllGenres] = useState([]);
   const [linguagens, setLinguagens] = useState([]);
-  
-  const [message, setMessage] = useState({ type: '', text: '' });
-  const [loading, setLoading] = useState(true); // Começa carregando
 
+  // O estado 'message' agora é usado apenas para ERROS
+  const [message, setMessage] = useState({ type: '', text: '' });
+  const [loading, setLoading] = useState(true);
+
+  // (useEffect para buscar filtros e dados do filme permanecem os mesmos)
   useEffect(() => {
     const fetchFilters = async () => {
       try {
-        const [generosRes, linguagensRes] = await Promise.all([
-          getGeneros(),
-          getLinguagens()
-        ]);
+        const [generosRes, linguagensRes] = await Promise.all([getGeneros(), getLinguagens()]);
         setAllGenres(generosRes.data);
         setLinguagens(linguagensRes.data);
       } catch (error) {
@@ -42,40 +39,28 @@ export default function EditMovie() {
       }
     };
     fetchFilters();
-  }, []); // Roda só uma vez
+  }, []);
 
   useEffect(() => {
-    // Só busca o filme se os gêneros e linguagens já tiverem sido carregados
     if (allGenres.length > 0 && linguagens.length > 0) {
       const fetchMovieData = async () => {
         setLoading(true);
         try {
           const response = await getFilmeById(id);
           const data = response.data;
-
-          // Processa os dados recebidos da API
           const actorsArray = splitToArray(data.actors);
           const genresArray = splitToArray(data.genre);
-          
-          // Encontra o ID da linguagem correspondente ao NOME da linguagem
           const foundLang = linguagens.find(l => l.linguagem === data.language);
 
-          // Preenche o formulário com os dados do filme
           setFormData({
-            title: data.title || '',
-            year: data.year || '',
-            rating: data.rating || '',
-            genres: genresArray || [],
-            director: data.director || '',
-            actor1: actorsArray[0] || '',
-            actor2: actorsArray[1] || '',
-            actor3: actorsArray[2] || '',
-            poster: data.poster || '',
-            synopsis: data.synopsis || '',
+            title: data.title || '', year: data.year || '',
+            rating: data.rating || '', genres: genresArray || [],
+            director: data.director || '', actor1: actorsArray[0] || '',
+            actor2: actorsArray[1] || '', actor3: actorsArray[2] || '',
+            poster: data.poster || '', synopsis: data.synopsis || '',
             id_linguagem: foundLang ? foundLang.id_linguagem : '',
             duration: data.duration || '',
           });
-          
         } catch (error) {
           console.error("Erro ao buscar dados do filme:", error);
           showMessage('error', 'Não foi possível carregar os dados do filme.');
@@ -83,13 +68,10 @@ export default function EditMovie() {
           setLoading(false);
         }
       };
-      
       fetchMovieData();
     }
-  }, [id, allGenres, linguagens]); // Depende do ID e dos filtros carregados
+  }, [id, allGenres, linguagens]);
 
-  
-  // (Handlers 'handleChange' e 'handleGenreChange' são iguais ao AddMovie)
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -106,6 +88,7 @@ export default function EditMovie() {
     });
   };
 
+  // Esta função agora é usada apenas para ERROS
   const showMessage = (type, text, duration = 4000) => {
     setMessage({ type, text });
     setTimeout(() => setMessage({ type: '', text: '' }), duration);
@@ -113,21 +96,36 @@ export default function EditMovie() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // (A validação ainda é uma boa prática)
+    setMessage({ type: '', text: '' }); // Limpa erros antigos
+
     const { title, year, genres, id_linguagem } = formData;
     if (!title || !year || !genres.length || !id_linguagem) {
       showMessage('error', 'Por favor, preencha todos os campos obrigatórios (*).');
       return;
     }
 
-    // Apenas mostra a mensagem e redireciona
-    showMessage('success', 'Solicitação de edição foi enviada ao administrador!');
-    
-    // Espera 2 segundos e volta para a página de detalhes
-    setTimeout(() => {
+    const editedMovieData = {
+      titulo: formData.title, ano: parseInt(year), poster: formData.poster || '',
+      rating: parseFloat(formData.rating) || 0, synopsis: formData.synopsis || 'Sem sinopse disponível',
+      generos_nomes: formData.genres, diretor_nome: formData.director || '',
+      id_linguagem: parseInt(formData.id_linguagem),
+      ator_nome1: formData.actor1 || '', ator_nome2: formData.actor2 || '',
+      ator_nome3: formData.actor3 || '', tempo_duracao: formData.duration || null,
+    };
+
+    try {
+      await submitEditFilme(id, editedMovieData);
+
+      // MUDANÇA AQUI: Usamos o 'alert' nativo
+      window.alert('Solicitação de edição foi enviada ao administrador!');
+
+      // Redireciona imediatamente após o utilizador clicar "OK" no alert
       navigate(`/filme/${id}`);
-    }, 2000);
+
+    } catch (error) {
+      console.error("Erro ao enviar edição:", error.response?.data?.error || error.message);
+      showMessage('error', `Erro ao enviar solicitação: ${error.response?.data?.error || 'Tente novamente.'}`);
+    }
   };
 
   const handleCancel = () => {
@@ -135,11 +133,10 @@ export default function EditMovie() {
       "Tem certeza que quer cancelar? As alterações não serão salvas."
     );
     if (temCerteza) {
-      navigate(`/filme/${id}`); // Volta para a pág. de detalhes
+      navigate(`/filme/${id}`);
     }
   };
 
-  // Se estiver carregando, mostra um feedback
   if (loading) {
     return (
       <>
@@ -160,7 +157,8 @@ export default function EditMovie() {
           <p>Altere as informações do filme abaixo.</p>
         </div>
 
-        {message.type && (
+        {/* MUDANÇA AQUI: Este div agora só renderiza se for um ERRO */}
+        {message.type === 'error' && (
           <div className={`message ${message.type === 'success' ? 'success-message' : 'error-message'} show`}>
             {message.text}
           </div>
@@ -168,13 +166,13 @@ export default function EditMovie() {
 
         <div className="form-card">
           <form id="edit-movie-form" onSubmit={handleSubmit}>
-            {/* Título */}
+            {/* ... (Resto do JSX do formulário) ... */}
+
             <div className="form-group">
               <label htmlFor="title">Título *</label>
               <input type="text" id="title" name="title" value={formData.title} onChange={handleChange} required />
             </div>
 
-            {/* Ano, Duração, Rating */}
             <div className="form-row" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
               <div className="form-group">
                 <label htmlFor="year">Ano *</label>
@@ -190,7 +188,6 @@ export default function EditMovie() {
               </div>
             </div>
 
-            {/* Linguagem e Diretor */}
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="id_linguagem">Linguagem *</label>
@@ -208,24 +205,22 @@ export default function EditMovie() {
                 <input type="text" id="director" name="director" value={formData.director} onChange={handleChange} />
               </div>
             </div>
-            
-            {/* Gêneros (Checkboxes) */}
+
             <div className="form-group">
               <label>Gêneros *</label>
               <div className="checkbox-group-container">
-                  {allGenres.map(g => (
-                    <div key={g.id_genero} className="checkbox-item">
-                      <input type="checkbox" id={`genre-${g.id_genero}`} name="genres" value={g.genero} 
-                             checked={formData.genres.includes(g.genero)} 
-                             onChange={handleGenreChange} />
-                      <label htmlFor={`genre-${g.id_genero}`}>{g.genero}</label>
-                    </div>
-                  ))
+                {allGenres.map(g => (
+                  <div key={g.id_genero} className="checkbox-item">
+                    <input type="checkbox" id={`genre-${g.id_genero}`} name="genres" value={g.genero}
+                      checked={formData.genres.includes(g.genero)}
+                      onChange={handleGenreChange} />
+                    <label htmlFor={`genre-${g.id_genero}`}>{g.genero}</label>
+                  </div>
+                ))
                 }
               </div>
             </div>
 
-            {/* Atores */}
             <div className="form-group">
               <label>Atores (Até 3)</label>
               <div className="form-row" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
@@ -235,19 +230,16 @@ export default function EditMovie() {
               </div>
             </div>
 
-            {/* URL da Capa */}
             <div className="form-group">
               <label htmlFor="poster">URL da Capa</label>
               <input type="url" id="poster" name="poster" value={formData.poster} onChange={handleChange} />
             </div>
 
-            {/* Sinopse */}
             <div className="form-group">
               <label htmlFor="synopsis">Sinopse</label>
               <textarea id="synopsis" name="synopsis" value={formData.synopsis} onChange={handleChange}></textarea>
             </div>
 
-            {/* Botões */}
             <div className="form-actions">
               <button type="button" className=" btns btn-secondary" onClick={handleCancel}>
                 Cancelar

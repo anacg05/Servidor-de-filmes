@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'; // Importar useEffect
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import Icon from '../../assets/icon_64.png';
@@ -12,22 +12,25 @@ export default function Login() {
   const [error, setError] = useState('');
   
   const navigate = useNavigate();
-  // Obter o 'user' (além do 'login')
   const { user, login } = useAuth();
 
   /*
-    Efeito de Redirecionamento:
-    Verifica se o utilizador já está logado ao carregar a página.
+    Este useEffect verifica se o utilizador já está logado
+    e redireciona-o para /home.
   */
   useEffect(() => {
     if (user) {
-      // Se estiver logado, redireciona para o dashboard correto
-      const homePath = user.type === 'admin' ? '/admin' : '/home';
+      // MUDANÇA: Envia todos (incluindo admin) para /home
+      const homePath = '/home'; 
       navigate(homePath, { replace: true });
     }
   }, [user, navigate]);
 
 
+  /*
+    Esta função (handleSubmit) também envia
+    ambos os tipos de utilizador para /home.
+  */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -35,11 +38,10 @@ export default function Login() {
 
     try {
       const userType = login(email, password); 
-      // O redirecionamento explícito após o login é mantido
-      if (userType === 'admin') {
-        navigate('/admin');
-      } else if (userType === 'user') {
-        navigate('/home');
+      
+      // MUDANÇA: Envia admin e user para /home
+      if (userType === 'admin' || userType === 'user') {
+        navigate('/home'); 
       }
     } catch (err) {
       setError(err.message);
@@ -48,7 +50,6 @@ export default function Login() {
   };
 
   /*
-    Renderização de Feedback:
     Se o 'user' existir (estiver a redirecionar), mostra "Carregando...".
   */
   if (user) {
@@ -60,7 +61,6 @@ export default function Login() {
   }
 
   /*
-    Renderização Padrão:
     Se não houver utilizador, mostra o formulário de login.
   */
   return (

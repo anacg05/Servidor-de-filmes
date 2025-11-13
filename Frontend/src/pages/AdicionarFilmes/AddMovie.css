@@ -127,30 +127,17 @@
 
 /* ===== BOTÃO SECUNDÁRIO (CANCELAR) ===== */
 .btn-secondary {
-    background: transparent;
+    background: #2d3748;
     color: white;
-    border: 2px solid #88b7ff;
+    box-shadow: none;
+    border: none;
 }
 
 .btn-secondary:hover {
-    background: rgba(38, 117, 220, 0.3);
+    background: #4a5568;
 }
 
-/* ===== MENSAGEM DE SUCESSO ===== */
-.success-message {
-    background-color: rgba(74, 222, 128, 0.1);
-    border: 1px solid rgba(74, 222, 128, 0.3);
-    color: #4a9eff; 
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    display: none;
-}
-
-.success-message.show {
-    display: block;
-    animation: slideDown 0.3s ease;
-}
+/* MUDANÇA AQUI: Removido o .success-message */
 
 /* ===== ANIMAÇÃO DAS MENSAGENS ===== */
 @keyframes slideDown {
@@ -165,14 +152,24 @@
 }
 
 /* ===== MENSAGEM DE ERRO ===== */
+/* (Deixei o nome da classe 'message' mais genérico se quiser usá-lo) */
+.message {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    display: none;
+}
+.message.show {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
 .error-message {
     background-color: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.3);
     color: #ef4444;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    display: none;
 }
 
 .error-message.show {

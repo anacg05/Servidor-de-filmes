@@ -1,35 +1,74 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './FilterBar.css';
-import { XCircle, X } from 'lucide-react';
+import { XCircle, Search } from 'lucide-react'; 
 
 function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, onClose }) {
   
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    const newParams = new URLSearchParams(searchParams);
+  /*
+    1. Bloco de Estado Local:
+    Isto corrige o bug de "não conseguir digitar" E o bug do "género".
+  */
+  const [localFilters, setLocalFilters] = useState({
+    genre: searchParams.get('genre') || '',
+    year: searchParams.get('ano') || ''
+  });
 
-    if (value) {
-      newParams.set(name, value);
-    } else {
-      newParams.delete(name);
-    }
-    setSearchParams(newParams);
+  /*
+    2. Sincronização:
+    Se a URL mudar (ex: por uma busca no Header),
+    o estado local é atualizado para refletir isso.
+  */
+  useEffect(() => {
+    setLocalFilters({
+      genre: searchParams.get('genre') || '',
+      year: searchParams.get('ano') || ''
+    });
+  }, [searchParams]);
+
+  /*
+    3. handleLocalChange:
+    Atualiza APENAS o estado local (tanto para 'genre' como 'year').
+  */
+  const handleLocalChange = (e) => {
+    const { name, value } = e.target;
+    setLocalFilters(prev => ({ ...prev, [name]: value }));
   };
 
-  const currentGenre = searchParams.get('genre') || '';
-  const currentYear = searchParams.get('ano') || '';
+  /*
+    4. handleFilterSubmit:
+    Chamado pelo botão "Filtrar".
+  */
+  const handleFilterSubmit = () => {
+    const newParams = new URLSearchParams(searchParams);
+    
+    // Define o Gênero (ou remove se estiver vazio)
+    if (localFilters.genre) {
+      newParams.set('genre', localFilters.genre);
+    } else {
+      newParams.delete('genre');
+    }
+    
+    // Define o Ano (ou remove se estiver vazio)
+    if (localFilters.year) {
+      newParams.set('ano', localFilters.year);
+    } else {
+      newParams.delete('ano');
+    }
+    
+    setSearchParams(newParams); // Atualiza a URL (dispara a pesquisa)
+    onClose(); // Fecha o dropdown
+  };
 
   return (
-    /* O container do filtro agora é o próprio conteúdo do dropdown */
-    <div className="filter-bar-content-dropdown"> {/* Renomeado para evitar conflito com CSS antigo */}
+    <div className="filter-bar-content-dropdown">
       
       <div className="filter-group">
         <label htmlFor="genre">Gênero</label>
         <select
           id="genre"
           name="genre"
-          value={currentGenre}
-          onChange={handleInputChange}
+          value={localFilters.genre} // Lê do estado local
+          onChange={handleLocalChange} // Atualiza o estado local
         >
           <option value="">Todos os Gêneros</option>
           {genres.map(genre => (
@@ -37,6 +76,7 @@ function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, 
           ))}
         </select>
       </div>
+      
       <div className="filter-group">
         <label htmlFor="year">Ano</label>
         <input
@@ -46,8 +86,8 @@ function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, 
           placeholder="Ex: 2023"
           min="1888"
           max="2099"
-          value={currentYear}
-          onChange={handleInputChange}
+          value={localFilters.year} // Lê do estado local
+          onChange={handleLocalChange} // Atualiza o estado local
           className="year-input" 
         />
       </div>
@@ -57,9 +97,9 @@ function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, 
           <XCircle size={18} />
           Limpar
         </button>
-        <button className="filter-btn btn-close" onClick={onClose}>
-          <X size={18} />
-          Fechar
+        <button className="filter-btn btn-filter" onClick={handleFilterSubmit}>
+          <Search size={18} />
+          Filtrar
         </button>
       </div>
       
