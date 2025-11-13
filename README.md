@@ -74,23 +74,6 @@ npm install
 npm run dev
 ```
 
-### Bibliotecas utilizadas:
-
-React Router Dom para gerenciamento das rotas do site:
-```bash
-npm install react-router-dom
-```
-
-Axios para fazer requisições HTTP:
-```bash
-npm install axios
-```
-
-React Icons para ícones:
-```bash
-npm install react-icons
-```
-
 ## Protótipo do projeto
 
 O protótipo com o fluxo inicial dos usuários foi desenvolvido no Figma, incluindo uma breve documentação do projeto com justificativas de decisões de estilo e uma explicação detalhada sobre o público-alvo e a proposta do projeto.
