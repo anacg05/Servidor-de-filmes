@@ -53,7 +53,7 @@ pip install -r requirements.txt
 
 ### Rodar o servidor do backend:
 ```bash
-python app.py
+py server.py
 ```
 
 ### Banco de dados MySQL
