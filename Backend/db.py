@@ -2,20 +2,46 @@ import mysql.connector
 import datetime
 import decimal
 
-# 🔹 Conexão com o banco MySQL
-try:
-    mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",        #  usuário
-        password="root",     #  senha
-        database="webserver_filmes_anacg"
-    )
-    print("✅ Conexão com o MySQL estabelecida com sucesso!")
-except mysql.connector.Error as err:
-    print(f"❌ Erro ao conectar ao MySQL: {err}")
-    exit(1)
+# 1. MUDANÇA: Guardamos a configuração, não a conexão
+db_config = {
+    "host": "localhost",
+    "user": "root",
+    "password": "senai",
+    "database": "webserver_filmes_anacg"
+}
+mydb = None # A conexão começa como 'None'
 
-# 🔹 Conversor de JSON (para lidar com datas/decimais do DB)
+# 2. MUDANÇA: Nova função para obter uma conexão válida
+def get_db_connection():
+    """
+    Verifica a conexão e reconecta se estiver inativa ou fechada.
+    """
+    global mydb
+    try:
+        # Se não houver conexão ou se estiver fechada, cria uma nova
+        if mydb is None or not mydb.is_connected():
+            print("Conexão perdida. Reconectando ao MySQL...")
+            mydb = mysql.connector.connect(**db_config)
+            print("✅ Conexão com o MySQL restabelecida.")
+        
+        # (Opcional, mas bom) Tenta um 'ping' para revalidar
+        mydb.ping(reconnect=True, attempts=1, delay=0)
+        
+    except mysql.connector.Error as err:
+        print(f"❌ Erro ao conectar/reconectar ao MySQL: {err}")
+        try:
+            # Tenta uma reconexão forçada
+            mydb = mysql.connector.connect(**db_config)
+            print("✅ Conexão com o MySQL restabelecida (forçada).")
+        except Exception as e:
+            print(f"❌ Falha crítica ao reconectar: {e}")
+            return None # Falha total
+            
+    return mydb
+
+# 
+# Função para converter dados do DB para JSON
+#
 def default_converter(obj):
     if isinstance(obj, (datetime.date, datetime.datetime)):
         return obj.isoformat()
@@ -28,10 +54,16 @@ def default_converter(obj):
         return float(obj)
     return str(obj)
 
-# 🔹 Funções helper para executar queries
+#
+# Funções de Query (agora usam get_db_connection())
+#
+
 def fetch_all(query, params=None):
     """ Busca múltiplos resultados (ex: SELECT *) """
-    cursor = mydb.cursor(dictionary=True)
+    db = get_db_connection()
+    if db is None: return [] # Retorna vazio se a conexão falhar
+    
+    cursor = db.cursor(dictionary=True)
     cursor.execute(query, params or ())
     result = cursor.fetchall()
     cursor.close()
@@ -39,7 +71,10 @@ def fetch_all(query, params=None):
 
 def fetch_one(query, params=None):
     """ Busca um único resultado (ex: SELECT ... WHERE id=) """
-    cursor = mydb.cursor(dictionary=True)
+    db = get_db_connection()
+    if db is None: return None
+    
+    cursor = db.cursor(dictionary=True)
     cursor.execute(query, params or ())
     result = cursor.fetchone()
     cursor.close()
@@ -47,9 +82,12 @@ def fetch_one(query, params=None):
 
 def execute_query(query, params=None):
     """ Executa queries de INSERT, UPDATE, DELETE """
-    cursor = mydb.cursor()
+    db = get_db_connection()
+    if db is None: return None
+    
+    cursor = db.cursor()
     cursor.execute(query, params or ())
-    mydb.commit()
+    db.commit() # Comita na conexão
     last_row_id = cursor.lastrowid
     cursor.close()
     return last_row_id
