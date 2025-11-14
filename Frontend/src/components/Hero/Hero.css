@@ -1,46 +1,56 @@
-/* ===== SEÇÃO PRINCIPAL (HERO) ===== */
+/* =======================================
+   SEÇÃO PRINCIPAL (HERO)
+======================================= */
 .hero {
   position: relative;
   height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
-/* ===== CAMADA DE FUNDO (GRADIENTE) ===== */
+/* =======================================
+   CAMADA DE FUNDO (GRADIENTE)
+======================================= */
 .hero-background {
   position: absolute;
-  inset: 0; 
+  inset: 0;
   background: linear-gradient(
     to right,
-    rgba(127, 29, 29, 0.2), 
-    rgba(17, 24, 39, 0.4), 
-    rgba(30, 58, 138, 0.2) 
+    rgba(127, 29, 29, 0.2),
+    rgba(17, 24, 39, 0.4),
+    rgba(30, 58, 138, 0.2)
   );
 }
 
-/* ===== GRADE DECORATIVA (EFEITO DE LINHAS) ===== */
+/* =======================================
+   GRADE DECORATIVA (EFEITO DE LINHAS)
+======================================= */
 .hero-grid {
   position: absolute;
   inset: 0;
   opacity: 0.3;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
-/* ===== CONTEÚDO PRINCIPAL DO HERO (TEXTOS E BOTÕES) ===== */
+/* =======================================
+   CONTEÚDO PRINCIPAL
+======================================= */
 .hero-content {
   position: relative;
-  z-index: 10; 
+  z-index: 10;
   text-align: center;
   padding: 0 1.5rem;
   max-width: 56rem;
 }
 
-/* ===== TÍTULO PRINCIPAL ===== */
+/* =======================================
+   TÍTULO
+======================================= */
 .hero-title {
   font-size: 3.75rem;
   font-weight: 700;
@@ -51,7 +61,9 @@
   background-clip: text;
 }
 
-/* ===== SUBTÍTULO ===== */
+/* =======================================
+   SUBTÍTULO
+======================================= */
 .hero-subtitle {
   font-size: 3rem;
   font-weight: 700;
@@ -59,20 +71,21 @@
   color: white;
 }
 
-/* ===== CONTAINER DOS BOTÕES ===== */
+/* =======================================
+   BOTÕES
+======================================= */
 .hero-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
 }
 
-/* ===== ESTILO GERAL DOS BOTÕES (HERO) ===== */
 .btnss {
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: 0.2s;
   border: none;
   font-size: 1rem;
   display: flex;
@@ -80,7 +93,7 @@
   gap: 0.5rem;
 }
 
-/* ===== BOTÃO PRIMÁRIO (VER FILMES) ===== */
+/* Botão Primário */
 .btnn-primary {
   background: #88b7ff;
   color: #030712;
@@ -92,7 +105,7 @@
   background: #74a9fa;
 }
 
-/* ===== BOTÃO SECUNDÁRIO (EDITAR FILME) ===== */
+/* Botão Secundário */
 .btnn-secondary {
   background: transparent;
   color: white;
@@ -101,18 +114,30 @@
 }
 
 .btnn-secondary:hover {
-  background: #2675dc4d; 
+  background: #2675dc4d;
 }
 
-/* ===== ÍCONE DENTRO DO BOTÃO ===== */
+/* Ícones */
 .square-pen,
 .icon-eye {
   width: 1.25rem;
   height: 1.25rem;
 }
 
-/* ===== RESPONSIVIDADE (MOBILE) ===== */
+/* =======================================
+   RESPONSIVIDADE
+======================================= */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .hero {
+    height: 420px;
+  }
+
   .hero-title {
     font-size: 2.5rem;
   }
@@ -121,8 +146,22 @@
     font-size: 2rem;
   }
 
-
   .hero-buttons {
-    flex-direction: column; 
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .btnss {
+    width: 100%;
+    justify-content: center;
   }
 }

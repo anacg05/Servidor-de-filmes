@@ -41,13 +41,10 @@ function ListarFilmes() {
 
   const [error, setError] = useState(null);
 
-  /*
-    Determina se a página deve exibir o GRID ou Carrosséis.
-    Busca e Ano ativam o grid. Apenas gênero não ativa.
-  */
+  
   const isFiltering = useMemo(() => {
-    return Boolean(searchTerm || year);
-  }, [searchTerm, year]);
+    return Boolean(searchTerm || year || genre);
+  }, [searchTerm, year, genre]);
 
   /* Carrega lista de gêneros (usada no filtro e nos carrosséis) */
   useEffect(() => {
@@ -129,27 +126,7 @@ function ListarFilmes() {
     }
   }, [isFiltering, searchParams]);
 
-  /*
-    Scroll automático até o carrossel correspondente
-    quando apenas o gênero estiver definido.
-  */
-  useEffect(() => {
-    if (genre && !searchTerm && !year) {
-      const anchorId = `genre-anchor-${genre
-        .toLowerCase()
-        .replace(/ /g, "-")}`;
-
-      const element = document.getElementById(anchorId);
-
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-
-        const newParams = new URLSearchParams(searchParams);
-        newParams.delete("genero");
-        setSearchParams(newParams, { replace: true });
-      }
-    }
-  }, [genre, searchTerm, year, searchParams, setSearchParams]);
+  
 
   /* Funções utilitárias estáveis */
   const handleClearFilters = useCallback(() => {
@@ -245,4 +222,3 @@ function ListarFilmes() {
 }
 
 export default ListarFilmes;
- 

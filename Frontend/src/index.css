@@ -1,18 +1,69 @@
-/* ===== RESET GERAL E FONTES ===== */
+/* =======================================
+   RESET E BASE
+======================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
-/* ===== ESTILO GERAL DO BODY ===== */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #030712; 
-  color: white; 
+  background: #030712;
+  color: white;
+}
+
+/* =======================================
+   CONTAINER PRINCIPAL DO APP
+======================================= */
+.app {
+  min-height: 100vh;
+  background: #030712;
+  color: white;
+}
+
+/* =======================================
+   LINKS
+======================================= */
+a {
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+/* =======================================
+   RESPONSIVIDADE GLOBAL
+======================================= */
+
+/* Telas médias (tablets) */
+@media (max-width: 1024px) {
+  body {
+    font-size: 0.98rem;
+  }
+}
+
+/* Tamanho comum para mobiles */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  .app {
+    padding-bottom: 2rem; /* espaço extra p/ componentes fixos */
+  }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+  body {
+    font-size: 0.9rem;
+  }
 }

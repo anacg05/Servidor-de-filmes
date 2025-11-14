@@ -1,27 +1,29 @@
-/* ===== RODAPÉ PRINCIPAL ===== */
+/* =======================================
+   RODAPÉ PRINCIPAL
+======================================= */
 .footer {
-  background: #111827; 
+  background: #111827;
   border-top: 1px solid rgba(75, 85, 99, 0.3);
   margin-top: 4rem;
 }
 
-/* ===== CONTAINER DO RODAPÉ ===== */
+/* =======================================
+   CONTAINER
+======================================= */
 .footer-container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 3rem 1.5rem;
 }
 
-/* ===== LOGO DO RODAPÉ ===== */
+/* =======================================
+   LOGO
+======================================= */
 .footer-logo {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
-}
-
-.footer-logo img {
-  /* Estilo para a imagem do logo, se necessário */
 }
 
 .footer-logo-text {
@@ -30,13 +32,17 @@
   color: white;
 }
 
-/* ===== DESCRIÇÃO ===== */
+/* =======================================
+   DESCRIÇÃO
+======================================= */
 .footer-description {
   color: #9ca3af;
-  margin: 0 0 2rem 0;
+  margin-bottom: 2rem;
 }
 
-/* ===== LINKS DO RODAPÉ ===== */
+/* =======================================
+   LINKS
+======================================= */
 .footer-links {
   display: flex;
   gap: 1.5rem;
@@ -46,7 +52,6 @@
 .footer-link {
   font-size: 0.875rem;
   color: #9ca3af;
-  text-decoration: none;
   transition: color 0.2s;
 }
 
@@ -54,17 +59,28 @@
   color: #88b7ff;
 }
 
-/* ===== COPYRIGHT ===== */
+/* =======================================
+   COPYRIGHT
+======================================= */
 .footer-copyright {
   font-size: 0.875rem;
   color: #6b7280;
-  margin: 0;
 }
 
-/* ===== RESPONSIVIDADE (MOBILE) ===== */
+/* =======================================
+   RESPONSIVIDADE
+======================================= */
 @media (max-width: 768px) {
   .footer-links {
-    flex-direction: column; 
+    flex-direction: column;
     gap: 0.75rem;
+  }
+
+  .footer-container {
+    text-align: center;
+  }
+
+  .footer-logo {
+    justify-content: center;
   }
 }

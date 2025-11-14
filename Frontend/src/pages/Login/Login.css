@@ -1,91 +1,119 @@
-/* ===== IMPORTAÇÃO DA FONTE ===== */
+/* ============================================================
+   IMPORTAÇÃO DA FONTE
+   Usada globalmente no projeto
+============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-/* ===== CONTAINER PRINCIPAL (TELA DE LOGIN) ===== */
+
+/* ============================================================
+   CONTAINER DA TELA DE LOGIN
+   Centraliza vertical e horizontal + fundo em gradiente
+============================================================ */
 .login-container {
-  min-height: 100vh; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%); 
-  padding: 20px; 
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+  padding: 20px;
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 
+    'Segoe UI', Roboto, sans-serif;
 }
 
-/* ===== CARD DE LOGIN ===== */
+
+/* ============================================================
+   CARD DE LOGIN
+   Estrutura principal contendo o formulário
+============================================================ */
 .login-card {
-  background: #1e2936; 
-  border-radius: 16px; 
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); 
-  width: 100%; 
-  max-width: 440px; 
-  overflow: hidden; 
+  width: 100%;
+  max-width: 440px;
+  background: #1e2936;
+  border-radius: 16px;
+  overflow: hidden;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-/* ===== CABEÇALHO DO CARD ===== */
+
+/* ============================================================
+   CABEÇALHO DO CARD (com logo)
+============================================================ */
 .login-header {
-  background: #161f2b; 
-  padding: 32px; 
-  text-align: center; 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+  background: #161f2b;
+  padding: 32px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* ===== LOGO ===== */
+/* Logo + texto */
 .logo {
-  display: inline-flex; 
-  align-items: center; 
-  gap: 12px; 
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
 }
-
-
 
 .logo-text {
-  font-size: 28px; 
-  font-weight: 700; 
-  color: #ffffff; 
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
   letter-spacing: -0.5px;
 }
 
-/* ===== CONTEÚDO DO CARD ===== */
+
+/* ============================================================
+   CONTEÚDO DO CARD
+============================================================ */
 .login-content {
-  padding: 40px 32px; 
+  padding: 40px 32px;
 }
 
-/* ===== TÍTULOS ===== */
+
+/* ============================================================
+   TÍTULOS
+============================================================ */
 .login-title {
   font-size: 28px;
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 8px 0;
+  margin-bottom: 8px;
   text-align: center;
 }
 
 .login-subtitle {
-  font-size: 15px; 
-  color: #8b96a5; 
-  margin: 0 0 32px 0;
+  font-size: 15px;
+  color: #8b96a5;
+  margin-bottom: 32px;
   text-align: center;
 }
 
-/* ===== FORMULÁRIO ===== */
+
+/* ============================================================
+   FORMULÁRIO
+============================================================ */
 .login-form {
   display: flex;
-  flex-direction: column; 
-  gap: 20px; 
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* ===== MENSAGEM DE ERRO ===== */
+/* Caixa de erro */
 .error-message {
-  background: rgba(239, 68, 68, 0.1); 
-  border: 1px solid rgba(239, 68, 68, 0.3); 
-  color: #fca5a5; 
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
   padding: 12px 16px;
   border-radius: 8px;
   font-size: 14px;
   text-align: center;
 }
 
-/* ===== CAMPOS DE FORMULÁRIO ===== */
+
+/* ============================================================
+   CAMPOS DO FORMULÁRIO
+============================================================ */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -96,82 +124,92 @@
   font-size: 14px;
   font-weight: 600;
   color: #e1e7ef;
-  letter-spacing: 0.2px;
 }
 
+/* Inputs */
 .form-group input {
-  background: #0f1419; 
-  border: 1px solid #2d3748; 
+  background: #0f1419;
+  border: 1px solid #2d3748;
   border-radius: 8px;
   padding: 12px 16px;
+
   font-size: 15px;
-  color: #ffffff;
-  transition: all 0.2s ease;
+  color: white;
   font-family: inherit;
+
+  transition: all 0.2s ease;
 }
 
 .form-group input::placeholder {
-  color: #5a6576; 
+  color: #5a6576;
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #74a9fa; 
-  box-shadow: 0 0 0 3px rgba(107, 158, 255, 0.1); 
+  border-color: #74a9fa;
+  box-shadow: 0 0 0 3px rgba(107, 158, 255, 0.1);
 }
 
 .form-group input:disabled {
-  opacity: 0.5; 
-  cursor: not-allowed; 
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-/* ===== LINKS E RODAPÉ DO FORM ===== */
+
+/* ============================================================
+   RODAPÉ DO FORMULÁRIO (esqueceu a senha)
+============================================================ */
 .form-footer {
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-end;
   margin-top: -8px;
 }
 
 .forgot-password {
   font-size: 14px;
   color: #88b7ff;
+  transition: color 0.2s;
   text-decoration: none;
-  transition: color 0.2s ease;
 }
 
 .forgot-password:hover {
-  color: #74a9fa; 
+  color: #74a9fa;
 }
 
-/* ===== BOTÃO DE LOGIN ===== */
+
+/* ============================================================
+   BOTÃO DE LOGIN
+============================================================ */
 .login-button {
-  background: #88b7ff; 
-  color: black; 
+  background: #88b7ff;
+  color: black;
+
+  padding: 14px 24px;
+  width: 100%;
+
   border: none;
   border-radius: 8px;
-  padding: 14px 24px;
+
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+
   transition: all 0.2s ease;
-  margin-top: 8px;
-  font-family: inherit;
 }
 
 .login-button:hover:not(:disabled) {
-  background: #74a9fa; 
-}
-
-.login-button:active:not(:disabled) {
-  transform: translateY(0);
+  background: #74a9fa;
 }
 
 .login-button:disabled {
-  opacity: 0.6; 
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
-/* ===== DIVISOR “OU CONTINUE COM” ===== */
+
+/* ============================================================
+   DIVISOR ("OU CONTINUE COM")
+============================================================ */
 .divider {
   position: relative;
   text-align: center;
@@ -179,46 +217,54 @@
 }
 
 .divider::before {
-  content: ''; 
+  content: "";
   position: absolute;
   top: 50%;
   left: 0;
   right: 0;
+
   height: 1px;
   background: rgba(255, 255, 255, 0.1);
 }
 
 .divider span {
   position: relative;
-  background: #1e2936; 
+  background: #1e2936;
   padding: 0 16px;
+
   font-size: 14px;
   color: #8b96a5;
 }
 
-/* ===== BOTÕES SOCIAIS (GOOGLE, GITHUB) ===== */
+
+/* ============================================================
+   BOTÕES SOCIAIS (Google e GitHub)
+============================================================ */
 .social-buttons {
   display: flex;
   gap: 12px;
   margin-bottom: 24px;
 }
 
+/* Botão individual */
 .social-button {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+
   background: #0f1419;
   border: 1px solid #2d3748;
   border-radius: 8px;
+
   padding: 12px 16px;
   font-size: 15px;
   font-weight: 600;
   color: #e1e7ef;
+
   cursor: pointer;
   transition: all 0.2s ease;
-  font-family: inherit;
 }
 
 .social-button:hover {
@@ -231,23 +277,22 @@
   transform: translateY(0);
 }
 
-.social-button svg {
-  flex-shrink: 0; 
-}
 
-/* ===== LINK DE CADASTRO ===== */
+/* ============================================================
+   LINK DE CADASTRO
+============================================================ */
 .signup-link {
   text-align: center;
-  margin-top: 24px;
   font-size: 14px;
   color: #8b96a5;
+  margin-top: 24px;
 }
 
 .signup-link a {
-  color: #88b7ff;
-  text-decoration: none;
   font-weight: 600;
+  color: #88b7ff;
   transition: color 0.2s ease;
+  text-decoration: none;
 }
 
 .signup-link a:hover {
@@ -255,17 +300,13 @@
 }
 
 
-/* ===== RESPONSIVIDADE (MOBILE) ===== */
+/* ============================================================
+   RESPONSIVIDADE (Mobile)
+============================================================ */
 @media (max-width: 480px) {
-  .back-button {
-    top: 16px; 
-    left: 16px; 
-    padding: 8px 12px; 
-    font-size: 14px;
-  }
 
   .login-card {
-    border-radius: 0; 
+    border-radius: 0;
   }
 
   .login-header {
@@ -277,6 +318,10 @@
   }
 
   .login-title {
-    font-size: 24px; 
+    font-size: 24px;
+  }
+
+  .social-buttons {
+    flex-direction: column;
   }
 }

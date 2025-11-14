@@ -1,31 +1,28 @@
 import React, { createContext, useContext, useState } from 'react';
 
-/* Contexto de Autenticação */
 const AuthContext = createContext(null);
 
-/* Base local de usuários (pode ser substituída por API futuramente) */
+// Usuarios (pode vir de uma API no futuro)
 const USERS_DB = {
   'admin@grizflix.com': { pass: 'admin123', type: 'admin' },
   'user@grizflix.com': { pass: 'user123', type: 'user' }
 };
 
-/* Provider responsável por gerenciar estado global de autenticação */
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  /* Login */
+  // Função de Login
   const login = (email, password) => {
     const foundUser = USERS_DB[email];
-
+    
     if (foundUser && foundUser.pass === password) {
-      setUser({ email, type: foundUser.type });
-      return foundUser.type;
+      setUser({ email: email, type: foundUser.type });
+      return foundUser.type; // Retorna 'admin' ou 'user'
     }
-
     throw new Error('Email ou senha incorretos');
   };
 
-  /* Logout */
+  // Função de Logout
   const logout = () => {
     setUser(null);
   };
@@ -37,7 +34,6 @@ export function AuthProvider({ children }) {
   );
 }
 
-/* Hook customizado para acessar o contexto */
 export const useAuth = () => {
   return useContext(AuthContext);
 };

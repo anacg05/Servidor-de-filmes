@@ -171,7 +171,7 @@ export default function MovieDetail() {
 
             <div className="detail-actions-container">
               <Link
-                to={user?.type === 'admin' ? '/admin/solicitacoes' : '/listarfilmes'}
+                to="/listarfilmes"  // MUDANÇA AQUI
                 className="detail-back-button"
               >
                 <ArrowLeft size={18} />
@@ -192,7 +192,7 @@ export default function MovieDetail() {
               </div>
 
               <div className="detail-info-section">
-                
+
                 <h1 className="detail-title">{movie.title}</h1>
 
                 <div className="detail-meta-icons">

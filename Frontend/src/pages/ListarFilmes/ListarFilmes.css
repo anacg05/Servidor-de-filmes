@@ -1,24 +1,61 @@
-/* ===== MENSAGEM DE "NENHUM RESULTADO" / ERRO / CARREGANDO ===== */
+/* =======================================
+   MENSAGEM DE FEEDBACK (Erro / Carregando / Nenhum Resultado)
+======================================= */
+
+/*
+  Este container é usado para mensagens como:
+  - "Nenhum filme encontrado"
+  - "Erro ao carregar filmes"
+  - "Carregando..."
+*/
 .list-feedback-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  min-height: 40vh; 
-  color: #9ca3af;
-  text-align: center;
+  align-items: center;
+
+  min-height: 40vh;
   max-width: 1280px;
+
   margin: 0 auto;
   padding: 1rem 1.5rem;
+
+  text-align: center;
+  color: #9ca3af;
 }
 
+/* Título da mensagem */
 .list-feedback-container h2 {
   font-size: 1.75rem;
   margin-bottom: 0.5rem;
   color: white;
 }
 
+/* Texto complementar */
 .list-feedback-container p {
   font-size: 1.1rem;
   color: #a0a0a0;
+}
+
+/* =======================================
+   RESPONSIVIDADE
+======================================= */
+@media (max-width: 768px) {
+  .list-feedback-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .list-feedback-container p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .list-feedback-container {
+    padding: 1rem;
+  }
+
+  .list-feedback-container h2 {
+    font-size: 1.35rem;
+  }
 }
