@@ -1,0 +1,9 @@
+USUARIO COMUM:
+
+Email: user@grizflix.com
+Senha: user123
+
+ADMINISTRADOR
+
+Email: admin@grizflix.com
+Senha: admin123
