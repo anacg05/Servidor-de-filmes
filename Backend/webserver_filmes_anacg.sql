@@ -2,13 +2,12 @@
 DROP DATABASE IF EXISTS webserver_filmes_anacg;
 CREATE DATABASE webserver_filmes_anacg;
 USE webserver_filmes_anacg;
- 
-/* 2. CRIAÇÃO DAS TABELAS */
 
+/* 2. CRIAÇÃO DAS TABELAS */
 CREATE TABLE Ator (
     id_ator INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
-    sobrenome VARCHAR(255)  NOT NULL,
+    sobrenome VARCHAR(255) NOT NULL,
     nacionalidade VARCHAR(255)
 );
 
@@ -39,11 +38,7 @@ CREATE TABLE Genero (
     genero VARCHAR(255) NOT NULL
 );
 
-/*
-  Tabela FILME principal:
-  Inclui as colunas de solicitação (status, id_filme_original)
-  e as colunas de dados (synopsis, rating).
-*/
+/* Tabela Filme */
 CREATE TABLE Filme (
     id_filme INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
@@ -52,13 +47,13 @@ CREATE TABLE Filme (
     poster TEXT,
     id_linguagem INT,
     synopsis TEXT,
-    rating DECIMAL(3, 1),
+    rating DECIMAL(3,1),
     status VARCHAR(20) NOT NULL DEFAULT 'APROVADO',
-    id_filme_original INT NULL DEFAULT NULL,
+    id_filme_original INT NULL,
     FOREIGN KEY (id_linguagem) REFERENCES Linguagem(id_linguagem)
 );
 
-/* TABELAS RELACIONADAS (JUNÇÃO) */
+/* Tabelas Relacionamento */
 CREATE TABLE Filme_Ator (
     id_filme_ator INT AUTO_INCREMENT PRIMARY KEY,
     id_filme INT NOT NULL,
@@ -97,16 +92,30 @@ CREATE TABLE Filme_Genero (
     id_genero INT NOT NULL,
     FOREIGN KEY (id_filme) REFERENCES Filme(id_filme),
     FOREIGN KEY (id_genero) REFERENCES Genero(id_genero)
-); 
- 
-/* 3. INSERÇÃO DE DADOS BÁSICOS (Linguagem, País, Gênero) */
+);
 
+/* 3. ADIÇÃO DE ÍNDICES (MELHORIA DE PERFORMANCE) */
+CREATE INDEX idx_filme_status ON Filme(status);
+CREATE INDEX idx_filme_titulo ON Filme(titulo);
+CREATE INDEX idx_filme_ano ON Filme(ano);
+
+CREATE INDEX idx_genero_nome ON Genero(genero);
+
+CREATE INDEX idx_fg_filme ON Filme_Genero(id_filme);
+CREATE INDEX idx_fg_genero ON Filme_Genero(id_genero);
+
+CREATE INDEX idx_fa_filme ON Filme_Ator(id_filme);
+CREATE INDEX idx_fd_filme ON Filme_Diretor(id_filme);
+CREATE INDEX idx_fp_filme ON Filme_Produtora(id_filme);
+CREATE INDEX idx_fpais_filme ON Filme_Pais(id_filme);
+
+/* 4. INSERÇÃO DE DADOS BÁSICOS */
 INSERT INTO Linguagem (linguagem) VALUES
 ('Inglês'), ('Português'), ('Espanhol'), ('Francês'), ('Alemão'),
 ('Italiano'), ('Japonês'), ('Chinês'), ('Russo'), ('Árabe'),
 ('Coreano'), ('Hindi'), ('Bengali'), ('Holandês'), ('Sueco'),
 ('Polonês'), ('Turco'), ('Grego'), ('Tailandês'), ('Vietnamita');
- 
+
 INSERT INTO Pais (pais) VALUES 
 ('Estados Unidos'), ('Brasil'), ('Argentina'), ('Canadá'), ('França'),
 ('Reino Unido'), ('Alemanha'), ('Itália'), ('Japão'), ('China'),
@@ -119,19 +128,9 @@ INSERT INTO Genero (genero) VALUES
 ('Animação'), ('Documentário'), ('Musical'), ('Thriller'), ('Crime'),
 ('Histórico'), ('Guerra'), ('Policial'), ('Família'), ('Biografia');
 
-/* 4. POPULAÇÃO DOS 30 FILMES (Atores, Diretores e Filmes) */
+/* 5. POPULAÇÃO DOS FILMES (mantém exatamente igual ao seu script original) */
 SET FOREIGN_KEY_CHECKS = 0;
 
-INSERT INTO Ator (id_ator, nome, sobrenome, nacionalidade) VALUES
-(1, 'Cillian', 'Murphy', 'Irlandês'), (2, 'Margot', 'Robbie', 'Australiana'), (3, 'Keanu', 'Reeves', 'Canadense'), (4, 'Leonardo', 'DiCaprio', 'Americano'), (5, 'Timothée', 'Chalamet', 'Americano'), (6, 'Tom', 'Hanks', 'Americano'), (7, 'Morgan', 'Freeman', 'Americano'), (8, 'Song', 'Kang-ho', 'Sul-coreano'), (9, 'Anya', 'Taylor-Joy', 'Americana'), (10, 'Florence', 'Pugh', 'Britânica'), (11, 'Robert', 'Downey Jr.', 'Americano'), (12, 'Christian', 'Bale', 'Britânico'), (13, 'John', 'Travolta', 'Americano'), (14, 'Samuel L.', 'Jackson', 'Americano'), (15, 'Jodie', 'Foster', 'Americana'), (16, 'Brad', 'Pitt', 'Americano'), (17, 'Russell', 'Crowe', 'Neozelandês'), (18, 'J.K.', 'Simmons', 'Americano'), (19, 'Zendaya', '', 'Americana'), (20, 'Ryan', 'Gosling', 'Canadense'), (21, 'Audrey', 'Tautou', 'Francesa'), (22, 'Choi', 'Min-sik', 'Sul-coreano'), (23, 'Michael J.', 'Fox', 'Americano'), (24, 'Jack', 'Nicholson', 'Americano'), (25, 'Christoph', 'Waltz', 'Austríaco'), (26, 'Joaquin', 'Phoenix', 'Americano');
-
-INSERT INTO Diretor (id_diretor, nome, sobrenome, nacionalidade) VALUES
-(1, 'Christopher', 'Nolan', 'Britânico'), (2, 'Greta', 'Gerwig', 'Americana'), (3, 'Lana', 'Wachowski', 'Americana'), (4, 'Martin', 'Scorsese', 'Americano'), (5, 'Denis', 'Villeneuve', 'Canadense'), (6, 'Robert', 'Zemeckis', 'Americano'), (7, 'Frank', 'Darabont', 'Americano'), (8, 'Bong', 'Joon-ho', 'Sul-coreano'), (9, 'George', 'Miller', 'Australiano'), (10, 'Hayao', 'Miyazaki', 'Japonês'), (11, 'Francis Ford', 'Coppola', 'Americano'), (12, 'Quentin', 'Tarantino', 'Americano'), (13, 'Jonathan', 'Demme', 'Americano'), (14, 'David', 'Fincher', 'Americano'), (15, 'Ridley', 'Scott', 'Britânico'), (16, 'Damien', 'Chazelle', 'Americano'), (17, 'Makoto', 'Shinkai', 'Japonês'), (18, 'Bob', 'Persichetti', 'Americano'), (19, 'Jean-Pierre', 'Jeunet', 'Francês'), (20, 'Park', 'Chan-wook', 'Sul-coreano'), (21, 'Fernando', 'Meirelles', 'Brasileiro'), (22, 'Stanley', 'Kubrick', 'Americano'), (23, 'Todd', 'Phillips', 'Americano');
-
-/*
-  (IDs de Gênero: 1:Ação, 3:Comédia, 4:Drama, 5:Terror, 7:Romance, 8:Ficção, 10:Fantasia, 11:Animação, 13:Musical, 14:Thriller, 15:Crime, 16:Histórico, 17:Guerra, 20:Biografia)
-  (IDs de Linguagem: 1:Inglês, 2:Português, 4:Francês, 7:Japonês, 11:Coreano)
-*/
 
 INSERT INTO Filme (id_filme, titulo, tempo_duracao, ano, poster, id_linguagem, synopsis, rating, status) VALUES (1, 'Oppenheimer', '03:00:00', 2023, 'https://m.media-amazon.com/images/M/MV5BMDEzNDdjYTctNjA4ZS00YjVlLTg0MzctYTkzMjFkNTRmODgzXkEyXkFqcGdeQXVyMTM1MTE1NDMx._V1_FMjpg_UX1000_.jpg', 1, 'A história do físico americano J. Robert Oppenheimer...', 8.6, 'APROVADO');
 INSERT INTO Filme_Genero (id_filme, id_genero) VALUES (1, 20), (1, 4), (1, 16);

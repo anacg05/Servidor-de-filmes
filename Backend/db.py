@@ -2,46 +2,50 @@ import mysql.connector
 import datetime
 import decimal
 
-# 1. MUDANÇA: Guardamos a configuração, não a conexão
+
+# ============================
+# CONFIGURAÇÃO DO BANCO
+# ============================
 db_config = {
     "host": "localhost",
     "user": "root",
-    "password": "senai",
+    "password": "root",
     "database": "webserver_filmes_anacg"
 }
-mydb = None # A conexão começa como 'None'
 
-# 2. MUDANÇA: Nova função para obter uma conexão válida
+mydb = None
+
+
+# ============================
+# CONEXÃO COM O BANCO
+# ============================
 def get_db_connection():
-    """
-    Verifica a conexão e reconecta se estiver inativa ou fechada.
-    """
+    """Retorna uma conexão ativa com o MySQL, reconectando se necessário."""
     global mydb
+
     try:
-        # Se não houver conexão ou se estiver fechada, cria uma nova
         if mydb is None or not mydb.is_connected():
             print("Conexão perdida. Reconectando ao MySQL...")
             mydb = mysql.connector.connect(**db_config)
-            print("✅ Conexão com o MySQL restabelecida.")
-        
-        # (Opcional, mas bom) Tenta um 'ping' para revalidar
+            print("Conexão restabelecida.")
+
         mydb.ping(reconnect=True, attempts=1, delay=0)
-        
+
     except mysql.connector.Error as err:
-        print(f"❌ Erro ao conectar/reconectar ao MySQL: {err}")
+        print(f"Erro ao conectar/reconectar ao MySQL: {err}")
         try:
-            # Tenta uma reconexão forçada
             mydb = mysql.connector.connect(**db_config)
-            print("✅ Conexão com o MySQL restabelecida (forçada).")
+            print("Conexão restabelecida (forçada).")
         except Exception as e:
-            print(f"❌ Falha crítica ao reconectar: {e}")
-            return None # Falha total
-            
+            print(f"Falha crítica ao reconectar: {e}")
+            return None
+
     return mydb
 
-# 
-# Função para converter dados do DB para JSON
-#
+
+# ============================
+# CONVERSÕES DE TIPOS PARA JSON
+# ============================
 def default_converter(obj):
     if isinstance(obj, (datetime.date, datetime.datetime)):
         return obj.isoformat()
@@ -54,40 +58,45 @@ def default_converter(obj):
         return float(obj)
     return str(obj)
 
-#
-# Funções de Query (agora usam get_db_connection())
-#
 
+# ============================
+# CONSULTAS SQL
+# ============================
 def fetch_all(query, params=None):
-    """ Busca múltiplos resultados (ex: SELECT *) """
+    """Executa SELECT retornando múltiplos registros."""
     db = get_db_connection()
-    if db is None: return [] # Retorna vazio se a conexão falhar
-    
+    if db is None:
+        return []
+
     cursor = db.cursor(dictionary=True)
     cursor.execute(query, params or ())
     result = cursor.fetchall()
     cursor.close()
     return result
 
+
 def fetch_one(query, params=None):
-    """ Busca um único resultado (ex: SELECT ... WHERE id=) """
+    """Executa SELECT retornando um único registro."""
     db = get_db_connection()
-    if db is None: return None
-    
+    if db is None:
+        return None
+
     cursor = db.cursor(dictionary=True)
     cursor.execute(query, params or ())
     result = cursor.fetchone()
     cursor.close()
     return result
 
+
 def execute_query(query, params=None):
-    """ Executa queries de INSERT, UPDATE, DELETE """
+    """Executa INSERT, UPDATE ou DELETE."""
     db = get_db_connection()
-    if db is None: return None
-    
+    if db is None:
+        return None
+
     cursor = db.cursor()
     cursor.execute(query, params or ())
-    db.commit() # Comita na conexão
+    db.commit()
     last_row_id = cursor.lastrowid
     cursor.close()
     return last_row_id

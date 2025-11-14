@@ -1,37 +1,36 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import "./MoviesCarousel.css";
-// 1. Importar o ícone 'Play' de volta
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 
+/* Carrossel horizontal de filmes */
 function MoviesCarousel({ title, movies, seeAllLink }) {
   const carouselRef = useRef(null);
 
+  /* Scroll manual (setas) */
   const scrollLeft = () => {
-    if (carouselRef.current && carouselRef.current.firstElementChild) {
+    if (carouselRef.current?.firstElementChild) {
       const cardWidth = carouselRef.current.firstElementChild.offsetWidth;
       carouselRef.current.scrollBy({ left: -cardWidth, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
-    if (carouselRef.current && carouselRef.current.firstElementChild) {
+    if (carouselRef.current?.firstElementChild) {
       const cardWidth = carouselRef.current.firstElementChild.offsetWidth;
       carouselRef.current.scrollBy({ left: cardWidth, behavior: "smooth" });
     }
   };
 
+  /* Fallback para ID caso não exista id_filme */
   const getMovieId = (movie) => {
-    return movie.id_filme || movie.titulo.toLowerCase().replace(/ /g, '-');
+    return movie.id_filme || movie.titulo.toLowerCase().replace(/ /g, "-");
   };
 
   return (
     <section className="featured-section">
-      
-      {/*
-        2. MUDANÇA AQUI:
-        O ícone <Play /> foi recolocado DENTRO da verificação 'if (title)'.
-      */}
+
+      {/* Cabeçalho da seção, exibido apenas se title existir */}
       {title && (
         <div className="section-header">
           <div className="section-title-wrapper">
@@ -41,7 +40,7 @@ function MoviesCarousel({ title, movies, seeAllLink }) {
         </div>
       )}
 
-      {/* ===== CARROSSEL ===== */}
+      {/* Carrossel */}
       <div className="carousel-container">
         <button className="arrow-btn left" onClick={scrollLeft}>
           <ChevronLeft size={40} />
@@ -50,22 +49,19 @@ function MoviesCarousel({ title, movies, seeAllLink }) {
         <div className="movies-grid" ref={carouselRef}>
           {movies && movies.length > 0 ? (
             movies.map((movie, index) => (
-              
               <Link
-                key={index}
-                to={`/filme/${getMovieId(movie)}`} 
-                state={{ movie: movie }} 
-                className="movie-card" 
+                key={movie.id_filme || index}
+                to={`/filme/${getMovieId(movie)}`}
+                state={{ movie }}
+                className="movie-card"
               >
                 <div className="movie-poster">
                   {movie.poster ? (
-                    <img src={movie.poster} alt={movie.titulo} />
+                    <img src={movie.poster} alt={movie.titulo} loading="lazy" />
                   ) : (
                     <div
                       className="poster-placeholder"
-                      style={{
-                        background: movie.gradient || "#1f2937",
-                      }}
+                      style={{ background: movie.gradient || "#1f2937" }}
                     ></div>
                   )}
                   <div className="poster-overlay"></div>
@@ -80,10 +76,11 @@ function MoviesCarousel({ title, movies, seeAllLink }) {
                       className="star-icon"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      stroke="currentColor"
-                      strokeWidth="2"
                     >
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 
+                        12 17.77 5.82 21.02 7 14.14 2 9.27 
+                        8.91 8.26 12 2"
+                      />
                     </svg>
                     <span className="rating-value">{movie.rating}</span>
                   </div>

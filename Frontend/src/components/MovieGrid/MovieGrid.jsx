@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './MovieGrid.css';
-// ⭐ MUDANÇA: Removemos a importação do CSS do carrossel
-// import '../MoviesCarousel/MoviesCarousel.css'; 
 
+/* Grid responsivo usado nas listagens de filmes */
 function MovieGrid({ movies }) {
-  // (Função getMovieId permanece a mesma)
+
+  /* Gera o ID do filme (fallback se não existir id_filme) */
   const getMovieId = (movie) => {
     return movie.id_filme || movie.titulo.toLowerCase().replace(/ /g, '-');
   };
 
+  /* Estado vazio */
   if (movies.length === 0) {
     return (
       <div className="no-results-container">
@@ -26,8 +27,7 @@ function MovieGrid({ movies }) {
           key={movie.id_filme || movie.titulo}
           to={`/filme/${getMovieId(movie)}`}
           state={{ movie: movie }}
-          // ⭐ MUDANÇA: Classe renomeada de 'movie-card' para 'grid-card'
-          className="grid-card" 
+          className="grid-card"
         >
           <div className="movie-poster">
             {movie.poster ? (
@@ -45,12 +45,9 @@ function MovieGrid({ movies }) {
 
           <div className="movie-info">
             <span className="movie-year">{movie.ano}</span>
+
             <div className="movie-rating">
-              <svg
-                className="star-icon"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
+              <svg className="star-icon" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
               </svg>
               <span className="rating-value">{movie.rating}</span>
