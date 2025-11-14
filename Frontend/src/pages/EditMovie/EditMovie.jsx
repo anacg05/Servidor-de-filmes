@@ -195,14 +195,14 @@ export default function EditMovie() {
             <div className="form-group">
               <label htmlFor="title">Título *</label>
               <input type="text" id="title" name="title"
-                value={formData.title} onChange={handleChange} required />
+                value={formData.title} onChange={handleChange} placeholder="Ex: Oppenheimer" required />
             </div>
 
             <div className="form-row" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
               <div className="form-group">
                 <label htmlFor="year">Ano *</label>
                 <input type="number" id="year" name="year"
-                  value={formData.year} onChange={handleChange} required />
+                  value={formData.year} onChange={handleChange} placeholder="2023" required />
               </div>
 
               <div className="form-group">
@@ -214,7 +214,7 @@ export default function EditMovie() {
               <div className="form-group">
                 <label htmlFor="rating">Avaliação (0-10)</label>
                 <input type="number" id="rating" name="rating"
-                  value={formData.rating} onChange={handleChange} />
+                  value={formData.rating} onChange={handleChange} placeholder="Ex: 8.5" />
               </div>
             </div>
 
@@ -235,7 +235,7 @@ export default function EditMovie() {
               <div className="form-group">
                 <label htmlFor="director">Diretor</label>
                 <input type="text" id="director" name="director"
-                  value={formData.director} onChange={handleChange} />
+                  value={formData.director} onChange={handleChange} placeholder="Ex: Christopher Nolan" />
               </div>
             </div>
 
@@ -261,24 +261,24 @@ export default function EditMovie() {
               <label>Atores (Até 3)</label>
               <div className="form-row" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
                 <input type="text" id="actor1" name="actor1"
-                  value={formData.actor1} onChange={handleChange} />
+                  value={formData.actor1} onChange={handleChange} placeholder="Ator 1" />
                 <input type="text" id="actor2" name="actor2"
-                  value={formData.actor2} onChange={handleChange} />
+                  value={formData.actor2} onChange={handleChange} placeholder="Ator 2" />
                 <input type="text" id="actor3" name="actor3"
-                  value={formData.actor3} onChange={handleChange} />
+                  value={formData.actor3} onChange={handleChange} placeholder="Ator 3" />
               </div>
             </div>
 
             <div className="form-group">
               <label htmlFor="poster">URL da Capa</label>
               <input type="url" id="poster" name="poster"
-                value={formData.poster} onChange={handleChange} />
+                value={formData.poster} onChange={handleChange} placeholder="https://exemplo.com/poster.jpg" />
             </div>
 
             <div className="form-group">
               <label htmlFor="synopsis">Sinopse</label>
               <textarea id="synopsis" name="synopsis"
-                value={formData.synopsis} onChange={handleChange}></textarea>
+                value={formData.synopsis} onChange={handleChange} placeholder="Escreva uma breve descrição..." ></textarea>
             </div>
 
             <div className="form-actions">

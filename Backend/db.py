@@ -5,7 +5,7 @@ import decimal
 db_config = {
     "host": "localhost",
     "user": "root",
-    "password": "root",
+    "password": "senai",
     "database": "webserver_filmes_anacg"
 }
 mydb = None # A conexão começa como 'None'

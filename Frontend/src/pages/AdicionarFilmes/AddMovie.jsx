@@ -155,6 +155,7 @@ export default function AddMovie() {
                   min="1888" max="2099"
                   value={formData.year}
                   onChange={handleChange}
+                  placeholder="2023"
                   required
                 />
               </div>
@@ -174,6 +175,8 @@ export default function AddMovie() {
                   min="0" max="10" step="0.1"
                   value={formData.rating}
                   onChange={handleChange}
+                  placeholder="Ex: 8.5"
+
                 />
               </div>
             </div>
