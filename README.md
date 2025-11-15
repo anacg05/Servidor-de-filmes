@@ -1,7 +1,7 @@
 # WebServer de Filmes
 
 <!-- Capa -->
-<img src="./projeto_capa.png"/>
+<img src="capa.png"/>
 
 <!-- Resumo -->
 **WebServer de Filmes** é um projeto desenvolvido para a disciplina de Frontend do curso de Desenvolvimento de Sistemas do SENAI Roberto Mange. O projeto tem como principal objetivo criar um sistema de gerenciamento de filmes, onde os usuários comuns podem visualizar, adicionar, editar e filtrar filmes, enquanto os administradores têm a função de aprovar ou rejeitar solicitações de adição e edição de filmes. O sistema conta com uma interface simples e intuitiva, usando **React** no frontend, **Python** no backend e **MySQL** como banco de dados.
@@ -78,7 +78,7 @@ npm run dev
 
 O protótipo com o fluxo inicial dos usuários foi desenvolvido no Figma, incluindo uma breve documentação do projeto com justificativas de decisões de estilo e uma explicação detalhada sobre o público-alvo e a proposta do projeto.
 
-<a href="" target="_blank"><img width="180" loading="lazy" src="https://img.shields.io/badge/Acesse%20o%20protótipo-4B5B96?style=for-the-bagde&logo=figma&logoColor=white" target="_blank"></a> 
+<a href="" target="_blank"><img width="180" loading="lazy" src="[https://img.shields.io/badge/Acesse%20o%20protótipo-4B5B96?style=for-the-bagde&logo=figma&logoColor=white](https://www.figma.com/design/ajqKdy3gBYTJTIxAXAGwZx/GrizFlix?node-id=1-2&t=ZiebgX0AiKK28RUp-1)" target="_blank"></a> 
 
 <br/>
 
