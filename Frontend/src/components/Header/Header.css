@@ -130,7 +130,6 @@
 
 
 /* =====  SUB-NAVBAR ===== */
-/* =====  SUB-NAVBAR ===== */
 .sub-nav-container {
   width: 100%;
   background-color: #030712; 
@@ -174,12 +173,10 @@
 
 .sub-nav-link:hover:not(.active) {
   color: white;
-  border-bottom-color: #88b7ff; 
 }
 
 
 /* ===== DROPDOWN DE PERFIL ===== */
-/* (Este bloco de CSS deve estar no seu ficheiro Header.css, ele está correto) */
 .profile-dropdown-wrapper {
   position: relative;
   display: inline-block;
@@ -199,26 +196,22 @@
   animation: fadeInDown 0.2s ease-out; 
 }
 
-/* ... (dropdown-item, dropdown-divider, logout-item) ... */
 
 
 /* ===== NOVO ESTILO: DROPDOWN DE FILTRO ===== */
 .filter-dropdown-wrapper {
   position: relative;
-  display: inline-block; /* Para que o wrapper não ocupe toda a largura */
-  height: 100%; /* Garante que o wrapper tenha a altura do NavLink */
-  display: flex; /* Para que o NavLink fique centralizado verticalmente */
+  display: inline-block; 
+  height: 100%; 
+  display: flex; 
   align-items: center;
 }
 
 .filter-dropdown-menu {
   position: absolute;
-  top: calc(100% + 10px); /* Posição abaixo do botão de filtro, com um pequeno espaço */
-  right: 0; /* Alinha o dropdown à direita do botão de filtro */
-  /* Remove os estilos de background, border, shadow, z-index, padding daqui.
-     Eles agora são definidos no .filter-bar-content-dropdown no FilterBar.css
-  */
-  z-index: 60; /* Garante que ele apareça acima de tudo */
+  top: calc(100% + 10px); 
+  right: 0; 
+  z-index: 60; 
 }
 
 /* Itens individuais do dropdown */

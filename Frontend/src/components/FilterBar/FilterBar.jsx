@@ -2,16 +2,21 @@ import React, { useState, useEffect } from 'react';
 import './FilterBar.css';
 import { XCircle, Search } from 'lucide-react'; 
 
-/* Barra de filtros usada na página de listagem */
 function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, onClose }) {
-
-  /* Estado local para edição dos filtros antes de aplicar */
+  
+  /*
+    1. Bloco de Estado Local:
+  */
   const [localFilters, setLocalFilters] = useState({
     genre: searchParams.get('genre') || '',
     year: searchParams.get('ano') || ''
   });
 
-  /* Sincroniza o estado local caso a URL seja alterada externamente */
+  /*
+    2. Sincronização:
+    Se a URL mudar (ex: por uma busca no Header),
+    o estado local é atualizado.
+  */
   useEffect(() => {
     setLocalFilters({
       genre: searchParams.get('genre') || '',
@@ -19,24 +24,38 @@ function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, 
     });
   }, [searchParams]);
 
-  /* Atualiza apenas o estado local */
+  /*
+    3. handleLocalChange:
+    Atualiza APENAS o estado local (tanto para 'genre' como 'year').
+  */
   const handleLocalChange = (e) => {
     const { name, value } = e.target;
     setLocalFilters(prev => ({ ...prev, [name]: value }));
   };
 
-  /* Aplica os filtros na URL */
+  /*
+    4. handleFilterSubmit:
+    Chamado pelo botão "Filtrar".
+  */
   const handleFilterSubmit = () => {
     const newParams = new URLSearchParams(searchParams);
-
-    if (localFilters.genre) newParams.set('genre', localFilters.genre);
-    else newParams.delete('genre');
-
-    if (localFilters.year) newParams.set('ano', localFilters.year);
-    else newParams.delete('ano');
-
-    setSearchParams(newParams);
-    onClose(); 
+    
+    // Define o Gênero (ou remove se estiver vazio)
+    if (localFilters.genre) {
+      newParams.set('genre', localFilters.genre);
+    } else {
+      newParams.delete('genre');
+    }
+    
+    // Define o Ano (ou remove se estiver vazio)
+    if (localFilters.year) {
+      newParams.set('ano', localFilters.year);
+    } else {
+      newParams.delete('ano');
+    }
+    
+    setSearchParams(newParams); // Atualiza a URL (dispara a pesquisa)
+    onClose(); // Fecha o dropdown
   };
 
   return (
@@ -47,8 +66,8 @@ function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, 
         <select
           id="genre"
           name="genre"
-          value={localFilters.genre}
-          onChange={handleLocalChange}
+          value={localFilters.genre} // Lê do estado local
+          onChange={handleLocalChange} // Atualiza o estado local
         >
           <option value="">Todos os Gêneros</option>
           {genres.map(genre => (
@@ -66,9 +85,9 @@ function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, 
           placeholder="Ex: 2023"
           min="1888"
           max="2099"
-          value={localFilters.year}
-          onChange={handleLocalChange}
-          className="year-input"
+          value={localFilters.year} // Lê do estado local
+          onChange={handleLocalChange} // Atualiza o estado local
+          className="year-input" 
         />
       </div>
 
