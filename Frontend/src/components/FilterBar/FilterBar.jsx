@@ -4,50 +4,38 @@ import { XCircle, Search } from 'lucide-react';
 
 function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, onClose }) {
   
-  /*
-    1. Bloco de Estado Local:
-  */
+  // Estado local do filtro
   const [localFilters, setLocalFilters] = useState({
-    genre: searchParams.get('genre') || '',
+    genre: searchParams.get('genero') || '',
     year: searchParams.get('ano') || ''
   });
 
-  /*
-    2. Sincronização:
-    Se a URL mudar (ex: por uma busca no Header),
-    o estado local é atualizado.
-  */
+  // Sincroniza estado local quando a URL muda
   useEffect(() => {
     setLocalFilters({
-      genre: searchParams.get('genre') || '',
+      genre: searchParams.get('genero') || '',
       year: searchParams.get('ano') || ''
     });
   }, [searchParams]);
 
-  /*
-    3. handleLocalChange:
-    Atualiza APENAS o estado local (tanto para 'genre' como 'year').
-  */
+  // Atualiza apenas o estado local
   const handleLocalChange = (e) => {
     const { name, value } = e.target;
     setLocalFilters(prev => ({ ...prev, [name]: value }));
   };
 
-  /*
-    4. handleFilterSubmit:
-    Chamado pelo botão "Filtrar".
-  */
+  // Atualiza os parâmetros da URL e fecha o dropdown
   const handleFilterSubmit = () => {
     const newParams = new URLSearchParams(searchParams);
     
-    // Define o Gênero (ou remove se estiver vazio)
+    // Define o Gênero (ou remove se vazio)
     if (localFilters.genre) {
-      newParams.set('genre', localFilters.genre);
+      newParams.set('genero', localFilters.genre); 
     } else {
-      newParams.delete('genre');
+      newParams.delete('genero'); 
     }
     
-    // Define o Ano (ou remove se estiver vazio)
+    // Define o Ano (ou remove se vazio)
     if (localFilters.year) {
       newParams.set('ano', localFilters.year);
     } else {
@@ -66,8 +54,8 @@ function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, 
         <select
           id="genre"
           name="genre"
-          value={localFilters.genre} // Lê do estado local
-          onChange={handleLocalChange} // Atualiza o estado local
+          value={localFilters.genre}
+          onChange={handleLocalChange}
         >
           <option value="">Todos os Gêneros</option>
           {genres.map(genre => (
@@ -85,8 +73,8 @@ function FilterBar({ searchParams, setSearchParams, genres, handleClearFilters, 
           placeholder="Ex: 2023"
           min="1888"
           max="2099"
-          value={localFilters.year} // Lê do estado local
-          onChange={handleLocalChange} // Atualiza o estado local
+          value={localFilters.year}
+          onChange={handleLocalChange}
           className="year-input" 
         />
       </div>

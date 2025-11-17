@@ -2,12 +2,7 @@
    MENSAGEM DE FEEDBACK (Erro / Carregando / Nenhum Resultado)
 ======================================= */
 
-/*
-  Este container é usado para mensagens como:
-  - "Nenhum filme encontrado"
-  - "Erro ao carregar filmes"
-  - "Carregando..."
-*/
+
 .list-feedback-container {
   display: flex;
   flex-direction: column;
