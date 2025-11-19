@@ -81,6 +81,5 @@ O protótipo com o fluxo inicial dos usuários foi desenvolvido no Figma, inclui
 <a href="https://www.figma.com/design/ajqKdy3gBYTJTIxAXAGwZx/GrizFlix?node-id=1-2&t=ZiebgX0AiKK28RUp-1" target="_blank"><img width="180" loading="lazy" src="https://img.shields.io/badge/Acesse%20o%20protótipo-4B5B96?style=for-the-bagde&logo=figma&logoColor=white" target="_blank"></a> 
 
 <br/>
-
 ## Tecnologias utilizadas
 <img src="https://skillicons.dev/icons?i=react,python,mysql,figma&perline=10" alt="Tecnologias do projeto" />
