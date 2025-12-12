@@ -45,7 +45,7 @@ Para rodar tanto o Backend quanto o Frontend, são necessárias as instalações
 
 ### 📊 Banco de dados MySQL
 
-Crie e configure o banco de dados MySQL com as tabelas necessárias conforme o script disponível na pasta database.
+Antes de tudo, crie e configure o banco de dados MySQL, no MySQL Workbench com as tabelas necessárias conforme o script disponível na pasta backend.
 
 ### 🐍 Backend
 > [!IMPORTANT] Não é necessário rodar o Backend para rodar o projeto frontend, mas é necessário para realizar as operações de backend.
