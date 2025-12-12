@@ -43,7 +43,7 @@ Além disso, na pasta "Assets" estão a fonte global do projeto e variáveis de 
 
 Para rodar tanto o Backend quanto o Frontend, são necessárias as instalações de algumas dependências:
 
-### Banco de dados MySQL
+### 📊 Banco de dados MySQL
 
 Crie e configure o banco de dados MySQL com as tabelas necessárias conforme o script disponível na pasta database.
 
