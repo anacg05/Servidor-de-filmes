@@ -43,6 +43,10 @@ Além disso, na pasta "Assets" estão a fonte global do projeto e variáveis de 
 
 Para rodar tanto o Backend quanto o Frontend, são necessárias as instalações de algumas dependências:
 
+### Banco de dados MySQL
+
+Crie e configure o banco de dados MySQL com as tabelas necessárias conforme o script disponível na pasta database.
+
 ### 🐍 Backend
 > [!IMPORTANT] Não é necessário rodar o Backend para rodar o projeto frontend, mas é necessário para realizar as operações de backend.
 
@@ -55,10 +59,6 @@ pip install -r requirements.txt
 ```bash
 py server.py
 ```
-
-### Banco de dados MySQL
-
-Crie e configure o banco de dados MySQL com as tabelas necessárias conforme o script disponível na pasta database.
 
 ### 💻 Frontend
 
